@@ -1,9 +1,9 @@
 " Plugins
 call plug#begin("~/.vim/plugged")
-    "    Plug 'morhetz/gruvbox'
     Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
     Plug 'jiangmiao/auto-pairs'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    "   Plug 'luochen1990/rainbow'
     Plug 'p00f/nvim-ts-rainbow'
     Plug 'itchyny/lightline.vim'
     Plug 'mengelbrecht/lightline-bufferline'
