@@ -159,6 +159,7 @@ EOF
 
 " fzf
 let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -l -g ""'
+nnoremap <silent> <C-f> :Files<CR>
 
 " END OF PLUGIN SETTINGS
 
