@@ -1,0 +1,7 @@
+
+/*
+drofi theme - dmenu bar type thing
+*/
+configuration {
+    theme: "~/.config/rofi/themes/drofi.rasi";
+}
