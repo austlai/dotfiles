@@ -19,6 +19,7 @@ call plug#begin("~/.vim/plugged")
     Plug 'Vimjas/vim-python-pep8-indent'
     Plug 'ellisonleao/glow.nvim'
     Plug 'mhinz/vim-startify'
+    Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
 
 " Basic Settings
