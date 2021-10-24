@@ -1,0 +1,58 @@
+/* vim:ft=css */
+window {
+    anchor: north;
+    location: north;
+    width: 100%;
+    background-color: #282828;
+    color: #87a481;
+    padding: 4px;
+    children: [ horibox ];
+}
+
+horibox {
+    orientation: horizontal;
+    children:   [ prompt, entry, listview ];
+    background-color:      #282828;
+}
+
+listview {
+    layout:     horizontal;
+    spacing:    5px;
+    lines:      100;
+    background-color:      #282828;
+
+}
+
+entry {
+    expand:     false;
+    width:      8em;
+    background-color:      #282828;
+    color: #87a481;
+
+
+}
+
+element {
+    padding: 0px 2px;
+    background-color: #282828;
+    color: #87a481;
+}
+
+element-text {
+    background-color: inherit;
+    text-color: inherit;
+}
+
+element-icon {
+    background-color: inherit;
+    text-color: inherit;
+}
+
+element selected {
+    background-color: #363636;
+}
+
+prompt {
+    background-color: #282828;
+    color : #87a481;
+}
