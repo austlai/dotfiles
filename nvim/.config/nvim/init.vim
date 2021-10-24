@@ -72,10 +72,11 @@ nnoremap + :vertical res +5<CR>
 nnoremap _ :vertical res -5<CR>
 :nnoremap <A->> :res +5<CR>
 :nnoremap <A-<> :res -5<CR>
-" Glow Markdown Preview
-noremap <leader>p :Glow<CR>
-" Custom Number Lines
+" Better tabbing
+vnoremap < <gv
+vnoremap > >gv
 
+" Custom Number Lines
 set number                                          " Shows numberlines
 
 augroup numbertoggle                                " Switches between hybrid and absolute number lines based on active
@@ -94,7 +95,6 @@ endif
 " nvim-lsp
 
     " Set hover color for definitions and suggestions
-
 hi Pmenu ctermbg=62 guibg=#353157
 hi NormalFloat guibg=#353157
 hi FloatBorder guifg=#cbe3e7 guibg=#353157
