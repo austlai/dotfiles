@@ -11,6 +11,7 @@ call plug#begin("~/.vim/plugged")
     Plug 'mboughaba/i3config.vim'
     Plug 'mhinz/vim-startify'
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 
     " File Searching
     Plug 'junegunn/fzf.vim'
@@ -285,10 +286,13 @@ require'nvim-treesitter.configs'.setup {
         enable = true,
     },
     indent = {
-        enable = false,
+        enable = true,
     },
 }
 EOF
+
+" Hexokinase (Colour codes)
+let g:Hexokinase_highlighters = [ 'virtual' ]
 
 " END PLUGIN SETTINGS
 
