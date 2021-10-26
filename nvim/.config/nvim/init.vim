@@ -31,6 +31,7 @@ call plug#begin("~/.vim/plugged")
     Plug 'hrsh7th/cmp-path'
     Plug 'hrsh7th/cmp-nvim-lsp'
     Plug 'onsails/lspkind-nvim'
+    Plug 'ray-x/lsp_signature.nvim'
 
     " Other
     Plug 'ellisonleao/glow.nvim'
@@ -220,6 +221,16 @@ cmp.setup({
 })
 EOF
 
+" lsp_signature
+lua << EOF
+
+require "lsp_signature".setup({
+    floating_window_above_cur_line = true,
+    hint_enable = false,
+    doc_lines = 0,
+})
+
+EOF
 
 " Lightline
 let g:lightline = {
@@ -286,7 +297,7 @@ require'nvim-treesitter.configs'.setup {
         enable = true,
     },
     indent = {
-        enable = true,
+        enable = false,
     },
 }
 EOF
