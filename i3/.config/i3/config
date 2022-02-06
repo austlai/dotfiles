@@ -330,7 +330,7 @@
 
 # transparency
 #exec --no-startup-id xcompmgr -c -C -t-5 -l-5 -r4.2 -o.55 &
-    exec --no-startup-id picom -CGb
+    exec --no-startup-id picom -CGb --experimental-backends
 
 # networkmanager-applet
     exec --no-startup-id nm-applet
@@ -344,6 +344,9 @@
 
 # Desktop notifications
     exec --no-startup-id dbus-launch dunst -config ~/.config/dunst/dunstrc
+
+# i3-battery-popup
+    exec --no-startup-id i3-battery-popup -n
 
 # Autostart apps as you like
 #exec --no-startup-id sleep 2 && xfce4-`termin`al
