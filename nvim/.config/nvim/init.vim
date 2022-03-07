@@ -2,6 +2,7 @@
 call plug#begin("~/.vim/plugged")
     " Themes & Colours
     Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
+    Plug 'sainnhe/sonokai'
     Plug 'itchyny/lightline.vim'
     Plug 'mengelbrecht/lightline-bufferline'
     Plug 'p00f/nvim-ts-rainbow'
@@ -40,8 +41,6 @@ call plug#end()
 
 " Basic Settings
 set nocompatible                                    " Removes vi compativility
-"autocmd vimenter * ++nested colorscheme challenger_deep     " Colour scheme
-:colorscheme challenger_deep                        " Colour scheme
 set tabstop=4                                       " Number of visual spaces per tab
 set softtabstop=4                                   " Number of spaces in tab
 set expandtab                                       " Turns tabs into spaces
@@ -59,6 +58,13 @@ set wildmenu                                        " Autocomplete for commands
 set clipboard+=unnamedplus                          " Sets up system clipboard usage
 set mouse=a
 
+
+" Colourschemes
+let g:sonokai_style = 'default'
+let g:sonokai_enable_italic = 1
+let g:sonokai_disable_italic_comment = 1
+colorscheme sonokai
+
 " Custom Key Mappings
 " jk => esc
 inoremap jk <esc>
@@ -69,6 +75,8 @@ inoremap jk <esc>
 :nnoremap <C-l> <C-w>l
 " Removes macro recording
 map q <Nop>
+" Remove Ex mode
+map Q <Nop>
 " Resizing windows
 nnoremap + :vertical res +5<CR>
 nnoremap _ :vertical res -5<CR>
@@ -234,7 +242,7 @@ EOF
 
 " Lightline
 let g:lightline = {
-    \ 'colorscheme':'challenger_deep',
+    \ 'colorscheme':'sonokai',
     \ 'tabline': {
     \    'left': [['buffers']]
     \ },
@@ -323,4 +331,3 @@ autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
-
