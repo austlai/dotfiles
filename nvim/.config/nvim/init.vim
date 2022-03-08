@@ -354,3 +354,4 @@ au!
 au VimEnter * lua DecreasePadding()
 au VimLeavePre * lua IncreasePadding()
 augroup END
+

@@ -6,7 +6,7 @@
 
     background = #DF282828
     background-alt = #DF363636
-    foreground = #87a481
+    foreground = #fffbde
     primary = #e1c699
     secondary = #20331e
     alert = #2c4829
