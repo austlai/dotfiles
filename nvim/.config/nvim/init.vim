@@ -52,7 +52,7 @@ filetype plugin indent on                           " Enables filetype detection
 set showmatch                                       " Highlights matching parenthesis
 set incsearch                                       " Search as characters are entered
 set hlsearch                                        " Highlight search matches
-set cc=80                                           " 80 char column
+"set cc=80                                           " 80 char column
 syntax on                                           " Syntax highlighting
 set wildmenu                                        " Autocomplete for commands
 set clipboard+=unnamedplus                          " Sets up system clipboard usage
@@ -331,3 +331,26 @@ autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
+
+" Editing Alacritty Padding
+lua <<EOF
+function Sad(line_nr, from, to, fname)
+  vim.cmd(string.format("silent !sed -i '%ss/%s/%s/' %s", line_nr, from, to, fname))
+end
+
+function IncreasePadding()
+  Sad('20', 0, 9, '~/.config/alacritty/alacritty.yml')
+  Sad('21', 0, 9, '~/.config/alacritty/alacritty.yml')
+end
+
+function DecreasePadding()
+  Sad('20', 9, 0, '~/.config/alacritty/alacritty.yml')
+  Sad('21', 9, 0, '~/.config/alacritty/alacritty.yml')
+end
+EOF
+
+augroup ChangeAlacrittyPadding
+au!
+au VimEnter * lua DecreasePadding()
+au VimLeavePre * lua IncreasePadding()
+augroup END
