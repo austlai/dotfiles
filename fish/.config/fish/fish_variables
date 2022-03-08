@@ -1,6 +1,9 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
+SETUVAR --export GDK_BACKEND:x11
 SETUVAR --export MANPAGER:less\x20\x2dR\x20\x2d\x2duse\x2dcolor\x20\x2dDd\x2br\x20\x2dDu\x2bb
+SETUVAR --export MOZ_DBUS_REMOTE:1
+SETUVAR --export MOZ_ENABLE_WAYLAND:0
 SETUVAR __fish_initialized:3100
 SETUVAR fish_color_autosuggestion:969896
 SETUVAR fish_color_cancel:normal
