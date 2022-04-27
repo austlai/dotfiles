@@ -389,7 +389,7 @@
     set $beige          #e1c699
 
 # define colors for windows:
-#class		        	border		bground		text		indicator	child_border
+#   class		        	border		bground		text		indicator	child_border
     client.focused		    $lightgreen	$darkgreen	$white		$beige		$mediumgrey
     client.unfocused	    $darkgreen	$darkgreen	$grey		$beige		$darkgrey
     client.focused_inactive	$darkgreen	$darkgreen	$grey		$beige		$black

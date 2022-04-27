@@ -4,7 +4,7 @@ SETUVAR --export GDK_BACKEND:x11
 SETUVAR --export MANPAGER:less\x20\x2dR\x20\x2d\x2duse\x2dcolor\x20\x2dDd\x2br\x20\x2dDu\x2bb
 SETUVAR --export MOZ_DBUS_REMOTE:1
 SETUVAR --export MOZ_ENABLE_WAYLAND:0
-SETUVAR __fish_initialized:3100
+SETUVAR __fish_initialized:3400
 SETUVAR fish_color_autosuggestion:969896
 SETUVAR fish_color_cancel:normal
 SETUVAR fish_color_command:b294bb
@@ -37,4 +37,5 @@ SETUVAR fish_pager_color_completion:normal
 SETUVAR fish_pager_color_description:B3A06D\x1eyellow
 SETUVAR fish_pager_color_prefix:normal\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
 SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
+SETUVAR fish_pager_color_selected_background:\x2dr
 SETUVAR fish_user_paths:/home/austin/\x2elocal/bin
