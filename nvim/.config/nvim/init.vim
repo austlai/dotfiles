@@ -2,6 +2,7 @@
 call plug#begin("~/.vim/plugged")
     " Themes & Colours
     Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
+    Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
     Plug 'sainnhe/sonokai'
     Plug 'itchyny/lightline.vim'
     Plug 'mengelbrecht/lightline-bufferline'
@@ -349,9 +350,9 @@ function DecreasePadding()
 end
 EOF
 
-augroup ChangeAlacrittyPadding
-au!
-au VimEnter * lua DecreasePadding()
-au VimLeavePre * lua IncreasePadding()
-augroup END
+"augroup ChangeAlacrittyPadding
+"au!
+"au VimEnter * lua DecreasePadding()
+"au VimLeavePre * lua IncreasePadding()
+"augroup END
 

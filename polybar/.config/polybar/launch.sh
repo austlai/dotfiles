@@ -11,8 +11,8 @@ killall -q polybar
 
 if type "xrandr"; then
     for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
-        MONITOR=$m polybar --reload base &
+        MONITOR=$m polybar --reload wpgtk &
     done
 else
-    polybar --reload base &
+    polybar --reload wpgtk &
 fi
