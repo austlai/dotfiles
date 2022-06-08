@@ -1,7 +1,8 @@
 if status is-interactive
     # Commands to run in interactive sessions can go here
 end
-set -xU MANPAGER 'less -R --use-color -Dd+r -Du+b'
+set -Ux MANPAGER 'less -R --use-color -Dd+r -Du+b'
+set -Ux LS_COLORS 'di=01;36'
 
 ###########
 # Aliases #
