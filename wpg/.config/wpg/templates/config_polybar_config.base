@@ -1,0 +1,138 @@
+[colors]
+background = ${xrdb:color8}
+background-alt = #120B0F
+foreground = ${xrdb:color15}
+foreground-alt = ${xrdb:color15}
+active = #6a8e7a
+inactive = #3c5045
+
+[bar/wpgtk]
+monitor = ${env:MONITOR}
+width = 100%
+height = 29
+offset-y = 0%
+radius = 0.0
+fixed-center = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = #f00
+
+border-size = 0
+border-color = #00000000
+
+padding-left = 0
+padding-right = 0
+
+module-margin-left = 1
+module-margin-right = 2
+
+font-0 = JetBrainsMono Nerd Font:pixelsize=11;1
+font-1 = Unifont:fontformat=truetype:size=8:antialias=false;0
+font-2 = Siji:pixelsize=10
+
+modules-left = i3
+modules-center = xwindow
+modules-right =  memory cpu pulseaudio battery date
+
+[module/xwindow]
+type = internal/xwindow
+format-background = ${colors.active}
+format-foreground = ${colors.foreground}
+format-padding = 2
+label = %title:0:30:...%
+
+[module/i3]
+type = internal/i3
+format = <label-mode><label-state>
+index-sort = true
+wrapping-scroll = false
+
+pin-workspaces = true
+
+label-mode-padding = 2
+label-mode-foreground = ${colors.foreground}
+label-mode-background = ${xrdb:color2}
+
+; focused = Active workspace on focused monitor
+label-focused = %index%
+label-focused-background = ${colors.active}
+label-focused-padding = 2
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused = %index%
+label-unfocused-padding = 2
+label-unfocused-background = ${colors.inactive}
+
+; visible = Active workspace on unfocused monitor
+label-visible = %index%
+label-visible-background = ${self.label-focused-background}
+label-visible-padding = ${self.label-focused-padding}
+
+; urgent = Workspace with urgency hint set
+label-urgent = %index%
+label-urgent-background = ${module/bspwm.label-urgent-background}
+label-urgent-padding = ${module/bspwm.label-urgent-padding}
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = "cpu "
+format-prefix-foreground = ${colors.foreground-alt}
+label = %percentage%%
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = "mem "
+format-prefix-foreground = ${colors.foreground-alt}
+label = %percentage_used%%
+
+[module/date]
+type = internal/date
+interval = 5
+
+date =
+date-alt = " %d-%m-%Y"
+
+time = %I:%M %p
+time-alt = %I:%M %p
+
+format-padding = 0
+
+label = "%date% %time% "
+
+[module/pulseaudio]
+
+type = internal/pulseaudio
+
+format-volume = <label-volume>
+label-volume = vol %percentage%%
+label-volume-foreground = ${root.foreground}
+
+label-muted = 🔇 muted
+label-muted-foreground = #666
+
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = ADP1
+full-at = 100
+
+format-charging = bat <label-charging>
+format-discharging = bat <label-discharging>
+format-full = "bat <label-full>"
+
+[settings]
+screenchange-reload = true
+format-prefix-font = 1
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5
+
+
+; vim:ft=dosini

@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/austin/.config/wpg/wallpapers/KeitoMorimoto.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#101b1e",
+        "foreground": "#dcffff",
+        "cursor": "#dcffff"
+    },
+    "colors": {
+        "color0": "#101b1e",
+        "color1": "#58675C",
+        "color2": "#728E5F",
+        "color3": "#5E99A0",
+        "color4": "#207688",
+        "color5": "#5A7589",
+        "color6": "#2F8997",
+        "color7": "#a8d7cd",
+        "color8": "#21383e",
+        "color9": "#669271",
+        "color10": "#91c76c",
+        "color11": "#69d3e0",
+        "color12": "#1ea0bb",
+        "color13": "#669ac0",
+        "color14": "#30bbd1",
+        "color15": "#dcffff"
+    }
+}

@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/austin/.config/wpg/wallpapers/IMG_20191211_235118.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#100e0f",
+        "foreground": "#fffff5",
+        "cursor": "#fffff5"
+    },
+    "colors": {
+        "color0": "#100e0f",
+        "color1": "#916D5C",
+        "color2": "#424742",
+        "color3": "#C89970",
+        "color4": "#4F4A4E",
+        "color5": "#676163",
+        "color6": "#748085",
+        "color7": "#d5cec6",
+        "color8": "#2a2528",
+        "color9": "#cb8868",
+        "color10": "#4c654c",
+        "color11": "#ffc57d",
+        "color12": "#70566b",
+        "color13": "#92717c",
+        "color14": "#86adbd",
+        "color15": "#fffff5"
+    }
+}

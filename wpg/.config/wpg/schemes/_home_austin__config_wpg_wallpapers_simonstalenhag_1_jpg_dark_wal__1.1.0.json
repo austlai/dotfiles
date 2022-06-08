@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/austin/.config/wpg/wallpapers/simonstalenhag_1.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#111b1f",
+        "foreground": "#ecffff",
+        "cursor": "#ecffff"
+    },
+    "colors": {
+        "color0": "#111b1f",
+        "color1": "#ADD6EF",
+        "color2": "#7B828A",
+        "color3": "#A7C8DB",
+        "color4": "#4B5A64",
+        "color5": "#B5B1B2",
+        "color6": "#98D4EF",
+        "color7": "#d1e9f2",
+        "color8": "#22373f",
+        "color9": "#bcffff",
+        "color10": "#8fa7c4",
+        "color11": "#c0ffff",
+        "color12": "#56778d",
+        "color13": "#ffcedb",
+        "color14": "#acffff",
+        "color15": "#ecffff"
+    }
+}
