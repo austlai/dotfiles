@@ -34,6 +34,7 @@ call plug#begin("~/.vim/plugged")
     Plug 'hrsh7th/cmp-nvim-lsp'
     Plug 'onsails/lspkind-nvim'
     Plug 'ray-x/lsp_signature.nvim'
+    Plug 'mfussenegger/nvim-jdtls'
 
     " Other
     Plug 'ellisonleao/glow.nvim'
@@ -210,9 +211,12 @@ cmp.setup({
     completion = {
         completeopt = 'menu,menuone,noinsert',
     },
-    documentation = {
-        border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" },
+    window = {
+        documentation = cmp.config.window.bordered(),
     },
+--    {
+--         border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" },
+--    },
     formatting = {
         format = lspkind.cmp_format {
             with_text = true,
@@ -298,7 +302,8 @@ nnoremap <silent> <C-f> :Files<CR>
 " Treesitter, Rainbow
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
-    ensure_installed = "maintained",
+    ensure_installed = "all",
+    ignore_install = { "phpdoc" },
     highlight = {
         enable = true,
     },
