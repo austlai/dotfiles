@@ -112,10 +112,11 @@ hi FloatBorder guifg=#cbe3e7 guibg=#353157
 
 lua << EOF
 
-require("nvim-lsp-installer").setup{}
+require("nvim-lsp-installer").setup {}
 
 require'lspconfig'.pyright.setup{}
 require'lspconfig'.clangd.setup{}
+require'lspconfig'.hls.setup{}
 require'lspconfig'.jdtls.setup{}
 require'lspconfig'.bashls.setup{}
 
@@ -150,7 +151,7 @@ local on_attach = function(client, bufnr)
 end
 
 -- Add other language servers when required
-local servers = { 'pyright', 'clangd', 'jdtls', 'bashls' }
+local servers = { 'pyright', 'clangd', 'hls', 'jdtls', 'bashls'}
     for _, lsp in ipairs(servers) do
         nvim_lsp[lsp].setup {
             on_attach = on_attach,
@@ -296,6 +297,7 @@ EOF
 " fzf
 let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -l -g ""'
 nnoremap <silent> <C-f> :Files<CR>
+nnoremap <silent> <C-g> :Ag<CR>
 
 " Treesitter, Rainbow
 lua <<EOF
@@ -337,4 +339,4 @@ autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
 " bash syntax
-autocm BufNewFile, BufRead * if expand('%:t') !~ '\.' | set filetype=sh | endif
+autocmd BufNewFile,BufRead * if expand('%:t') !~ '\.' | set filetype=sh | endif
