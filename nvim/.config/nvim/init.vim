@@ -1,8 +1,6 @@
 " Plugins
 call plug#begin("~/.vim/plugged")
     " Themes & Colours
-    Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
-    Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
     Plug 'sainnhe/sonokai'
     Plug 'itchyny/lightline.vim'
     Plug 'mengelbrecht/lightline-bufferline'
@@ -34,10 +32,7 @@ call plug#begin("~/.vim/plugged")
     Plug 'hrsh7th/cmp-nvim-lsp'
     Plug 'onsails/lspkind-nvim'
     Plug 'ray-x/lsp_signature.nvim'
-    Plug 'mfussenegger/nvim-jdtls'
-
-    " Other
-    Plug 'ellisonleao/glow.nvim'
+    Plug 'williamboman/nvim-lsp-installer'
 
 call plug#end()
 
@@ -54,7 +49,7 @@ filetype plugin indent on                           " Enables filetype detection
 set showmatch                                       " Highlights matching parenthesis
 set incsearch                                       " Search as characters are entered
 set hlsearch                                        " Highlight search matches
-"set cc=80                                           " 80 char column
+set cc=80                                           " 80 char column
 syntax on                                           " Syntax highlighting
 set wildmenu                                        " Autocomplete for commands
 set clipboard+=unnamedplus                          " Sets up system clipboard usage
@@ -68,6 +63,8 @@ let g:sonokai_disable_italic_comment = 1
 colorscheme sonokai
 
 " Custom Key Mappings
+" Leader Key
+map <Space> <Leader>
 " jk => esc
 inoremap jk <esc>
 " Ctrl + hjkl => window control
@@ -80,13 +77,15 @@ map q <Nop>
 " Remove Ex mode
 map Q <Nop>
 " Resizing windows
-nnoremap + :vertical res +5<CR>
-nnoremap _ :vertical res -5<CR>
-:nnoremap <A->> :res +5<CR>
-:nnoremap <A-<> :res -5<CR>
+nnoremap <Leader>+ :vertical res +5<CR>
+nnoremap <Leader>- :vertical res -5<CR>
 " Better tabbing
 vnoremap < <gv
 vnoremap > >gv
+" Buffer Stuff
+nnoremap <Leader>n :bn<CR>
+nnoremap <Leader>b :bp<CR>
+nnoremap <Leader>d :bd<CR>
 
 " Custom Number Lines
 set number                                          " Shows numberlines
@@ -113,8 +112,12 @@ hi FloatBorder guifg=#cbe3e7 guibg=#353157
 
 lua << EOF
 
+require("nvim-lsp-installer").setup{}
+
 require'lspconfig'.pyright.setup{}
 require'lspconfig'.clangd.setup{}
+require'lspconfig'.jdtls.setup{}
+require'lspconfig'.bashls.setup{}
 
 local nvim_lsp = require('lspconfig')
 
@@ -137,8 +140,9 @@ local on_attach = function(client, bufnr)
     buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>zz', opts)
     buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
     buf_set_keymap('n', 'K', "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-    buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-    buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+    buf_set_keymap('n', 'ge', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+    buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+    buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
     buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
 
     vim.lsp.handlers["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {border = border})
@@ -146,7 +150,7 @@ local on_attach = function(client, bufnr)
 end
 
 -- Add other language servers when required
-local servers = { 'pyright', 'clangd' }
+local servers = { 'pyright', 'clangd', 'jdtls', 'bashls' }
     for _, lsp in ipairs(servers) do
         nvim_lsp[lsp].setup {
             on_attach = on_attach,
@@ -214,9 +218,6 @@ cmp.setup({
     window = {
         documentation = cmp.config.window.bordered(),
     },
---    {
---         border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" },
---    },
     formatting = {
         format = lspkind.cmp_format {
             with_text = true,
@@ -265,7 +266,7 @@ let g:lightline#bufferlineicon_position = "first"
 
 " NERDTree
 nnoremap <Leader>f :NERDTreeToggle<CR>
-nnoremap <silent> <Leader>v :NERDTreeFind<CR>
+nnoremap <silent> <Leader>s :NERDTreeFind<CR>
 let NERDTreeMinimalUI = 1
 let NERDTreeShowHiddden = 1
 
@@ -291,9 +292,6 @@ require("indent_blankline").setup {
     buftype_exclude = {"terminal"}
 }
 EOF
-
-" Rainbow Brackets
-"""let g:rainbow_active = 1
 
 " fzf
 let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -l -g ""'
@@ -338,26 +336,5 @@ autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
-" Editing Alacritty Padding
-lua <<EOF
-function Sad(line_nr, from, to, fname)
-  vim.cmd(string.format("silent !sed -i '%ss/%s/%s/' %s", line_nr, from, to, fname))
-end
-
-function IncreasePadding()
-  Sad('20', 0, 9, '~/.config/alacritty/alacritty.yml')
-  Sad('21', 0, 9, '~/.config/alacritty/alacritty.yml')
-end
-
-function DecreasePadding()
-  Sad('20', 9, 0, '~/.config/alacritty/alacritty.yml')
-  Sad('21', 9, 0, '~/.config/alacritty/alacritty.yml')
-end
-EOF
-
-"augroup ChangeAlacrittyPadding
-"au!
-"au VimEnter * lua DecreasePadding()
-"au VimLeavePre * lua IncreasePadding()
-"augroup END
-
+" bash syntax
+autocm BufNewFile, BufRead * if expand('%:t') !~ '\.' | set filetype=sh | endif
