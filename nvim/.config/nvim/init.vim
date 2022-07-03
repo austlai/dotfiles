@@ -9,7 +9,6 @@ call plug#begin("~/.vim/plugged")
     Plug 'lukas-reineke/indent-blankline.nvim'
     Plug 'dag/vim-fish'
     Plug 'mboughaba/i3config.vim'
-    Plug 'mhinz/vim-startify'
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 
@@ -86,6 +85,8 @@ vnoremap > >gv
 nnoremap <Leader>n :bn<CR>
 nnoremap <Leader>b :bp<CR>
 nnoremap <Leader>d :bd<CR>
+" Spelling
+inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 
 " Custom Number Lines
 set number                                          " Shows numberlines
@@ -274,18 +275,6 @@ let NERDTreeShowHiddden = 1
 " Smoothie
 let g:smoothie_speed_exponentiation_factor = 1
 
-" Startify
-let g:startify_custom_header = [
-\'    _   _      __     __                   __  __',
-\'   | \ |"|     \ \   /"/u       ___      U|^ \/ ^|u',
-\'  <|  \| |>     \ \ / //       |_"_|     \| |\/| |/',
-\'  U| |\  |u     /\ V /_,-.      | |       | |  | |',
-\'   |_| \_|     U  \_/-(_/     U/| |\u     |_|  |_|',
-\'   ||   \\,-.    //        .-,_|___|_,-.   ||  ||',
-\'   (_")  (_/    (__)        \_)-` `-(_/   (./  \.)',
-\]
-highlight StartifySection ctermfg=42
-
 " Indent Lines
 lua <<EOF
 require("indent_blankline").setup {
@@ -337,6 +326,11 @@ autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
+autocmd BufWritePost * Trail
 
 " bash syntax
 autocmd BufNewFile,BufRead * if expand('%:t') !~ '\.' | set filetype=sh | endif
+
+" markdown notes
+
+autocmd BufWritePost *.md silent !/home/austin/bin/buildmd "%:p"

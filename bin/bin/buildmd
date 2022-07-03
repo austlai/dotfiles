@@ -1,0 +1,9 @@
+#!/bin/sh
+
+filename="$1"
+target="$(dirname "${filename}")/../pdf"
+outputFile="$(basename "$filename" .md).pdf"
+
+mkdir -p "$target"
+echo "$filename"
+pandoc --pdf-engine=pdflatex -o "$target/$outputFile" "$filename" &

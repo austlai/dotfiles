@@ -1,0 +1,6 @@
+#!/bin/sh
+
+vacuum_cleaner="/home/austin/vacuum_cleaner"
+file=$(cd "$vacuum_cleaner" && find * -type f -printf '%T@ %p\n' | sort -k1,1nr | grep -E '\.pdf$' | head -1 | cut -d' ' -f2- )
+
+echo "$vacuum_cleaner/$file" | xargs -d '\n' zathura
