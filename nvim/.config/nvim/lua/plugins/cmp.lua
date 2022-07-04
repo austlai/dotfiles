@@ -1,0 +1,57 @@
+-- nvim-cmp --
+
+local cmp = require'cmp'
+local lspkind = require('lspkind')
+
+cmp.setup({
+    mapping = {
+        ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+        ["<C-f>"] = cmp.mapping.scroll_docs(4),
+        ["<C-e>"] = cmp.mapping.close(),
+        ["<c-space>"] = cmp.mapping.complete(),
+        ["<Tab>"] = cmp.mapping.confirm {
+            behavior = cmp.ConfirmBehavior.Insert,
+            select = true,
+        },
+        ["<C-j>"] = function(fallback)
+            if cmp.visible() then
+                cmp.select_next_item()
+            else
+                fallback()
+            end
+        end,
+        ["<C-k>"] = function(fallback)
+            if cmp.visible() then
+                cmp.select_prev_item()
+            else
+                fallback()
+            end
+        end,
+    },
+    sources = {
+        { name = "nvim_lsp", keyword_length = 3 },
+        { name = "path", keyword_length = 5 },
+        { name = "buffer", keyword_length = 3 },
+        { name = "spell", keyword_length = 3 },
+    },
+    completion = {
+        completeopt = 'menu,menuone,noinsert',
+    },
+    window = {
+        documentation = cmp.config.window.bordered(),
+    },
+    formatting = {
+        format = lspkind.cmp_format {
+            with_text = true,
+            menu = {
+                nvim_lsp = "ﲳ",
+                path = "ﱮ",
+                buffer = "﬘",
+                spell = "暈",
+            },
+        },
+    },
+    experimental = {
+        ghost_text = true,
+    },
+})
