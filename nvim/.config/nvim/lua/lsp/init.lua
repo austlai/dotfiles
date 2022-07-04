@@ -34,7 +34,7 @@ end
 
 -- Language Servers
 local lsp_flags = { debounce_text_changes = 150 }
-local servers = { 'pyright', 'clangd', 'hls', 'jdtls', 'bashls'}
+local servers = { 'pyright', 'clangd', 'hls', 'jdtls', 'bashls', 'sumneko_lua'}
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
         on_attach = on_attach,

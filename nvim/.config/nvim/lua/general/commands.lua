@@ -43,7 +43,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 })
 
 function ftBash()
-    if not string.match(vim.fn.expand([['&:t']]), [['\.']])
+    if vim.fn.expand('%:e') == ''
     then
         vim.opt.filetype = "sh"
     end
