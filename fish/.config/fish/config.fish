@@ -9,7 +9,7 @@ set -Ux TERMINAL 'alacritty'
 ###########
 
 # Quick Edits
-alias envim="nvim ~/.config/nvim/init.vim"
+alias envim="cd ~/.config.nvim && nvim"
 alias editfish="nvim ~/.config/fish/config.fish"
 alias editi3="nvim ~/.config/i3/config"
 
