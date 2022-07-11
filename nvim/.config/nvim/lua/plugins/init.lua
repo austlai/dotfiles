@@ -29,6 +29,7 @@ vim.call('plug#begin', '~/.vim/plugged')
 
     -- LSP
     Plug 'neovim/nvim-lspconfig'
+    Plug 'mfussenegger/nvim-jdtls'
     Plug 'hrsh7th/nvim-cmp'
     Plug 'hrsh7th/cmp-buffer'
     Plug 'hrsh7th/cmp-path'

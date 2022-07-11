@@ -15,6 +15,7 @@ opt.clipboard = 'unnamedplus'
 opt.mouse = 'a'
 opt.number = true
 opt.completeopt = { "menu", "menuone", "noselect" }
+vim.g.mapleader = ' '
 
 if fn.has('nvim') or fn.has('termguicolors')
 then
