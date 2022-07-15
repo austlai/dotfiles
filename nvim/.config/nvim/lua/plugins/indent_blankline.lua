@@ -1,6 +1,7 @@
 -- Indent Lines --
 
 require("indent_blankline").setup {
-    char = "|",
-    buftype_exclude = {"terminal"}
+    buftype_exclude = {"terminal"},
+    use_treesitter = true,
+    show_first_indent_level = true,
 }

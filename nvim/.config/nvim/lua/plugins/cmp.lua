@@ -4,6 +4,11 @@ local cmp = require'cmp'
 local lspkind = require('lspkind')
 
 cmp.setup({
+    snippet = {
+        expand = function(args)
+            require('luasnip').lsp_expand(args.body)
+        end,
+    },
     mapping = {
         ["<C-d>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
@@ -29,9 +34,10 @@ cmp.setup({
         end,
     },
     sources = {
-        { name = "nvim_lsp", keyword_length = 3 },
+        { name = "nvim_lsp" },
+        { name = "buffer" },
+        { name = "luasnip" },
         { name = "path", keyword_length = 5 },
-        { name = "buffer", keyword_length = 3 },
         { name = "spell", keyword_length = 3 },
     },
     completion = {
@@ -48,6 +54,7 @@ cmp.setup({
                 path = "ﱮ",
                 buffer = "﬘",
                 spell = "暈",
+                luasnip = "",
             },
         },
     },
@@ -55,3 +62,12 @@ cmp.setup({
         ghost_text = true,
     },
 })
+
+-- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+
+-- The following example advertise capabilities to `clangd`.
+require'lspconfig'.clangd.setup {
+    capabilities = capabilities,
+}

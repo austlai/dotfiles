@@ -6,20 +6,20 @@ vim.call('plug#begin', '~/.vim/plugged')
 
     -- Themes & Colours
     Plug 'sainnhe/sonokai'
-    Plug 'itchyny/lightline.vim'
-    Plug 'mengelbrecht/lightline-bufferline'
+    Plug 'nvim-lualine/lualine.nvim'
+    Plug 'akinsho/bufferline.nvim'
     Plug 'p00f/nvim-ts-rainbow'
-    Plug 'ryanoasis/vim-devicons'
     Plug 'lukas-reineke/indent-blankline.nvim'
-    Plug 'dag/vim-fish'
-    Plug 'mboughaba/i3config.vim'
+    Plug 'kyazdani42/nvim-web-devicons'
     Plug('nvim-treesitter/nvim-treesitter', { ['do'] = vim.fn[':TSUpdate'] })
     Plug('rrethy/vim-hexokinase', { ['do'] = vim.fn['make hexokinase'] })
+    Plug 'mboughaba/i3config.vim'
+    Plug 'dag/vim-fish'
 
     -- File Searching
     Plug 'junegunn/fzf.vim'
     Plug('junegunn/fzf', { ['do'] = vim.fn['fzf#install']})
-    Plug 'preservim/nerdtree'
+    Plug 'kyazdani42/nvim-tree.lua'
 
     -- QOL
     Plug 'jiangmiao/auto-pairs'
@@ -30,6 +30,8 @@ vim.call('plug#begin', '~/.vim/plugged')
     -- LSP
     Plug 'neovim/nvim-lspconfig'
     Plug 'mfussenegger/nvim-jdtls'
+    Plug 'mfussenegger/nvim-dap'
+    Plug 'rcarriga/nvim-dap-ui'
     Plug 'hrsh7th/nvim-cmp'
     Plug 'hrsh7th/cmp-buffer'
     Plug 'hrsh7th/cmp-path'
@@ -37,6 +39,7 @@ vim.call('plug#begin', '~/.vim/plugged')
     Plug 'onsails/lspkind-nvim'
     Plug 'ray-x/lsp_signature.nvim'
     Plug 'williamboman/nvim-lsp-installer'
+    Plug 'L3MON4D3/LuaSnip'
 
 vim.call('plug#end')
 
@@ -44,8 +47,12 @@ require('plugins.cmp')
 require('plugins.fzf')
 require('plugins.hexokinase')
 require('plugins.indent_blankline')
-require('plugins.lightline')
+require('plugins.lualine')
+require('plugins.bufferline')
 require('plugins.lsp_signature')
 require('plugins.nerdtree')
+require('plugins.nvimtree')
 require('plugins.smoothie')
 require('plugins.treesitter')
+require('plugins.dap')
+require('plugins.dapui')

@@ -2,6 +2,7 @@
 
 require("nvim-lsp-installer").setup {
     ensure_installed = { "jdtls@1.12.0-202206011637" },
+    --automatic_installation = { exclude = { "jdtls" } }
 }
 
 local nvim_lsp = require('lspconfig')
@@ -36,13 +37,17 @@ local on_attach = function(client, bufnr)
     vim.lsp.handlers["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {border = border})
 end
 
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+
 -- Language Servers
 local lsp_flags = { debounce_text_changes = 150 }
 local servers = { 'pyright', 'clangd', 'hls', 'bashls', 'sumneko_lua'}
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
         on_attach = on_attach,
-        flags = lsp_flags
+        flags = lsp_flags,
+        capabilities = capabilities
     }
 end
 
