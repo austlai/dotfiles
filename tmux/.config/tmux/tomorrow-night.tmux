@@ -50,6 +50,7 @@ set -g mode-style bg="#1d1f21"
 set -g mode-style fg="#de935f"
 
 # right side of status bar holds "[host name] (date time)"
+set -g status-left ""
 set -g status-right-length 100
 set -g status-right-style fg=black
 set -g status-right-style bold
