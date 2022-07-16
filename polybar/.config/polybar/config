@@ -71,8 +71,8 @@ label-visible-padding = ${self.label-focused-padding}
 
 ; urgent = Workspace with urgency hint set
 label-urgent = %index%
-label-urgent-background = ${module/bspwm.label-urgent-background}
-label-urgent-padding = ${module/bspwm.label-urgent-padding}
+label-urgent-background = ${xrdb:color13}
+label-urgent-padding = 2
 
 [module/cpu]
 type = internal/cpu
