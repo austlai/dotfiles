@@ -56,6 +56,7 @@ colors:
     magenta:    '{color13}'
     cyan:       '{color14}'
     white:      '{color15}'
+  transparent_background_colors: true
 
 live_config_reload: true
     #foreground: '#c5c8c6'

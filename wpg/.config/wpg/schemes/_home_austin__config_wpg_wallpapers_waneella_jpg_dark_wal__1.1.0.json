@@ -3,12 +3,12 @@
     "alpha": "100",
 
     "special": {
-        "background": "#0b0b09",
+        "background": "#2c2e34",
         "foreground": "#fdded3",
         "cursor": "#fdded3"
     },
     "colors": {
-        "color0": "#0b0b09",
+        "color0": "#2c2e34",
         "color1": "#90412D",
         "color2": "#60514B",
         "color3": "#884E3A",

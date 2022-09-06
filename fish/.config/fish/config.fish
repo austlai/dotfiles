@@ -1,6 +1,8 @@
 if status is-interactive
-    # Commands to run in interactive sessions can go here
+and not set -q TMUX
+    exec tmux
 end
+
 set -Ux MANPAGER 'less -R --use-color -Dd+r -Du+b'
 set -Ux LS_COLORS 'di=01;36'
 set -Ux TERMINAL 'alacritty'
