@@ -10,7 +10,7 @@ local gears = require("gears")
 local awful = require("awful")
 
 -- Icon directory path
-local icondir = awful.util.getdir("config") .. "src/assets/icons/titlebar/"
+local icondir = awful.util.getdir("config") .. "assets/icons/titlebar/"
 
 Theme.font = user_vars.font.bold
 

@@ -12,7 +12,7 @@ local wibox = require("wibox")
 require("core.signals")
 
 -- Icon directory path
-local icondir = awful.util.getdir("config") .. "src/assets/icons/audio/"
+local icondir = awful.util.getdir("config") .. "assets/icons/audio/"
 
 -- Returns the volume controller
 return function(s)
@@ -55,7 +55,7 @@ return function(s)
       device:connect_signal(
         "button::press",
         function()
-          awful.spawn.spawn("./.config/awesome/src/scripts/vol.sh set_sink " .. node)
+          awful.spawn.spawn("./.config/awesome/scripts/vol.sh set_sink " .. node)
 
           awesome.emit_signal("update::background:vol", node)
         end
@@ -207,7 +207,7 @@ return function(s)
       device:connect_signal(
         "button::press",
         function()
-          awful.spawn.spawn("./.config/awesome/src/scripts/mic.sh set_source " .. node)
+          awful.spawn.spawn("./.config/awesome/scripts/mic.sh set_source " .. node)
 
           awesome.emit_signal("update::background:mic", node)
         end
@@ -779,7 +779,7 @@ return function(s)
   -- Get microphone volume
   local function get_mic_volume()
     awful.spawn.easy_async_with_shell(
-      "./.config/awesome/src/scripts/mic.sh volume",
+      "./.config/awesome/scripts/mic.sh volume",
       function(stdout)
         local volume = stdout:gsub("%%", ""):gsub("\n", "")
         volume_controller:get_children_by_id("mic_volume_margin")[1].mic_volume.slider_margin.slider:set_value(tonumber(volume))
@@ -799,7 +799,7 @@ return function(s)
   -- Check if microphone is muted
   local function get_mic_mute()
     awful.spawn.easy_async_with_shell(
-      "./.config/awesome/src/scripts/mic.sh mute",
+      "./.config/awesome/scripts/mic.sh mute",
       function(stdout)
         if stdout:match("yes") then
           volume_controller:get_children_by_id("mic_volume_margin")[1].mic_volume.slider_margin.slider:set_value(tonumber(0))

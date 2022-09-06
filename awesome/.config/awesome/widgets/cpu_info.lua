@@ -11,7 +11,7 @@ local watch = awful.widget.watch
 local wibox = require("wibox")
 require("core.signals")
 
-local icon_dir = awful.util.getdir("config") .. "src/assets/icons/cpu/"
+local icon_dir = awful.util.getdir("config") .. "assets/icons/cpu/"
 
 --TODO: Add tooltip with more CPU and per core information
 return function(widget, clock_mode)

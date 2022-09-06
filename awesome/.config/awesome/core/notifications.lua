@@ -10,7 +10,7 @@ local menubar = require('menubar')
 local naughty = require("naughty")
 local wibox = require("wibox")
 
-local icondir = awful.util.getdir("config") .. "src/assets/icons/notifications/"
+local icondir = awful.util.getdir("config") .. "assets/icons/notifications/"
 
 -- TODO: Figure out how to use hover effects without messing up the actions
 naughty.config.defaults.ontop = true
@@ -409,7 +409,7 @@ naughty.connect_signal(
   app_name = "System Notification",
   title    = "A notification 3",
   message  = "This is very informative and overflowing",
-  icon     = "/home/crylia/.config/awesome/src/assets/userpfp/crylia.png",
+  icon     = "/home/crylia/.config/awesome/assets/userpfp/crylia.png",
   urgency  = "normal",
   timeout  = 1,
   actions  = {

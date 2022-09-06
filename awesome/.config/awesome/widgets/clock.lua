@@ -11,7 +11,7 @@ local wibox = require("wibox")
 require("core.signals")
 
 -- Icon directory path
-local icondir = awful.util.getdir("config") .. "src/assets/icons/clock/"
+local icondir = awful.util.getdir("config") .. "assets/icons/clock/"
 
 -- Returns the clock widget
 return function()

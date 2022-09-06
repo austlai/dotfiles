@@ -11,7 +11,7 @@ local wibox = require("wibox")
 require("core.signals")
 
 -- Icon directory path
-local icondir = awful.util.getdir("config") .. "src/assets/icons/date/"
+local icondir = awful.util.getdir("config") .. "assets/icons/date/"
 
 -- Returns the date widget
 return function()

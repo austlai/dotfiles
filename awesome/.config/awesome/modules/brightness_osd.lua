@@ -10,7 +10,7 @@ local gears = require("gears")
 local wibox = require("wibox")
 
 -- Icon directory path
-local icondir = awful.util.getdir("config") .. "src/assets/icons/brightness/"
+local icondir = awful.util.getdir("config") .. "assets/icons/brightness/"
 
 BACKLIGHT_MAX_BRIGHTNESS = 0
 BACKLIGHT_SEPS = 0

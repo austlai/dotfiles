@@ -12,7 +12,7 @@ local wibox = require("wibox")
 require("core.signals")
 
 -- Icon directory path
-local icondir = awful.util.getdir("config") .. "src/assets/icons/battery/"
+local icondir = awful.util.getdir("config") .. "assets/icons/battery/"
 
 -- Returns the battery widget
 return function()

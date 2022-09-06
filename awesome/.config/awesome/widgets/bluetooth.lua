@@ -12,7 +12,7 @@ local wibox = require("wibox")
 require("core.signals")
 
 -- Icon directory path
-local icondir = awful.util.getdir("config") .. "src/assets/icons/bluetooth/"
+local icondir = awful.util.getdir("config") .. "assets/icons/bluetooth/"
 
 -- Returns the bluetooth widget
 return function()
@@ -65,7 +65,7 @@ return function()
         icon = icon .. "-on"
         bluetooth_state = "on"
         awful.spawn.easy_async_with_shell(
-          './.config/awesome/src/scripts/bt.sh',
+          './.config/awesome/scripts/bt.sh',
           function(stdout2)
             if stdout2 == nil or stdout2:gsub("\n", "") == "" then
               bluetooth_tooltip:set_text("Bluetooth is turned " .. bluetooth_state .. "\n" .. "You are currently not connected")

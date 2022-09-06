@@ -10,7 +10,7 @@ local wibox = require("wibox")
 require("core.signals")
 
 -- Icon directory path
-local icondir = awful.util.getdir("config") .. "src/assets/icons/audio/"
+local icondir = awful.util.getdir("config") .. "assets/icons/audio/"
 
 -- Returns the audio widget
 return function(s)
@@ -57,7 +57,7 @@ return function(s)
 
   local get_volume = function()
     awful.spawn.easy_async_with_shell(
-      "./.config/awesome/src/scripts/vol.sh volume",
+      "./.config/awesome/scripts/vol.sh volume",
       function(stdout)
         local icon = icondir .. "volume"
         stdout = stdout:gsub("%%", "")
@@ -85,7 +85,7 @@ return function(s)
 
   local check_muted = function()
     awful.spawn.easy_async_with_shell(
-      "./.config/awesome/src/scripts/vol.sh mute",
+      "./.config/awesome/scripts/vol.sh mute",
       function(stdout)
         if stdout:match("yes") then
           audio_widget.container.audio_layout.label.visible = false

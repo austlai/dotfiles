@@ -11,7 +11,7 @@ local wibox = require("wibox")
 require("core.signals")
 
 -- Icon directory path
-local icondir = awful.util.getdir("config") .. "src/assets/icons/powermenu/"
+local icondir = awful.util.getdir("config") .. "assets/icons/powermenu/"
 
 return function(s)
 
@@ -40,7 +40,7 @@ return function(s)
   -- TODO: If the user doesnt have AccountsService look into $HOME/.faces
   local update_profile_picture = function()
     awful.spawn.easy_async_with_shell(
-      "./.config/awesome/src/scripts/pfp.sh 'userPfp'",
+      "./.config/awesome/scripts/pfp.sh 'userPfp'",
       function(stdout)
         if stdout then
           profile_picture:set_image(stdout:gsub("\n", ""))
@@ -55,10 +55,10 @@ return function(s)
   -- Get the full username(if set) and the username + hostname
   local update_user_name = function()
     awful.spawn.easy_async_with_shell(
-      "./.config/awesome/src/scripts/pfp.sh 'userName' '" .. user_vars.namestyle .. "'",
+      "./.config/awesome/scripts/pfp.sh 'userName' '" .. user_vars.namestyle .. "'",
       function(stdout)
         if stdout:gsub("\n", "") == "Rick Astley" then
-          profile_picture:set_image(awful.util.getdir("config") .. "src/assets/userpfp/" .. "rickastley.jpg")
+          profile_picture:set_image(awful.util.getdir("config") .. "assets/userpfp/" .. "rickastley.jpg")
         end
         profile_name:set_text(stdout)
       end

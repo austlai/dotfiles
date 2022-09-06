@@ -12,7 +12,7 @@ local wibox = require("wibox")
 require("core.signals")
 
 -- Icon directory path
-local icondir = awful.util.getdir("config") .. "src/assets/icons/network/"
+local icondir = awful.util.getdir("config") .. "assets/icons/network/"
 
 -- Insert your interfaces here, get the from ip a
 local interfaces = {

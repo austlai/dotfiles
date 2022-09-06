@@ -11,7 +11,7 @@ local wibox = require("wibox")
 require("core.signals")
 
 -- Icon directory path
-local icondir = awful.util.getdir("config") .. "src/assets/icons/titlebar/"
+local icondir = awful.util.getdir("config") .. "assets/icons/titlebar/"
 
 awful.titlebar.enable_tooltip = true
 awful.titlebar.fallback_name = 'Client'

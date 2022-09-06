@@ -10,7 +10,7 @@ local gears = require("gears")
 local wibox = require("wibox")
 
 -- Icon directory path
-local icondir = awful.util.getdir("config") .. "src/assets/icons/audio/"
+local icondir = awful.util.getdir("config") .. "assets/icons/audio/"
 
 -- Returns the volume_osd
 return function(s)
@@ -101,7 +101,7 @@ return function(s)
 
   local function update_osd()
     awful.spawn.easy_async_with_shell(
-      "./.config/awesome/src/scripts/vol.sh volume",
+      "./.config/awesome/scripts/vol.sh volume",
       function(stdout)
       local volume_level = stdout:gsub("\n", ""):gsub("%%", "")
       awesome.emit_signal("widget::volume")
@@ -143,14 +143,14 @@ return function(s)
 
   local update_slider = function()
     awful.spawn.easy_async_with_shell(
-      "./.config/awesome/src/scripts/vol.sh mute",
+      "./.config/awesome/scripts/vol.sh mute",
       function(stdout)
       if stdout:match("yes") then
         volume_osd_widget.container.osd_layout.icon_slider_layout.label_value_layout.value:set_text("0%")
         volume_osd_widget.container.osd_layout.icon_slider_layout.icon_margin1.icon_margin2.icon:set_image(icondir .. "volume-mute" .. ".svg")
       else
         awful.spawn.easy_async_with_shell(
-          "./.config/awesome/src/scripts/vol.sh volume",
+          "./.config/awesome/scripts/vol.sh volume",
           function(stdout2)
           stdout2 = stdout2:gsub("%%", ""):gsub("\n", "")
           volume_osd_widget.container.osd_layout.icon_slider_layout.slider_layout.volume_slider:set_value(tonumber(stdout2))
