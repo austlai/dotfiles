@@ -1,0 +1,28 @@
+#!/bin/bash
+
+while getopts "sf:" opt; do
+    case "$opt" in
+        s)
+            s=true
+            ;;
+        f)
+            f=true
+            filename="$OPTARG"
+            ;;
+    esac
+done
+
+files=$(find $(pwd) -type f | grep -E '(\.m4v|\.mkv|\.mpv)$')
+
+if [[ "$f" != true ]]; then
+    filename=${PWD##*/}
+fi
+
+
+if [[ "$s" = true ]]; then
+    echo "$files" | shuf -o "$filename"
+else
+    echo "$files" > "$filename"
+fi
+
+mpv --playlist="$filename"
