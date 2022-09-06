@@ -1,8 +1,8 @@
 -- nvim-lsp
 
-require("nvim-lsp-installer").setup {
-    ensure_installed = { "jdtls@1.12.0-202206011637" },
-    --automatic_installation = { exclude = { "jdtls" } }
+require("mason").setup {}
+require("mason-lspconfig").setup {
+    automatic_installation = {}
 }
 
 local nvim_lsp = require('lspconfig')
@@ -42,7 +42,7 @@ capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
 -- Language Servers
 local lsp_flags = { debounce_text_changes = 150 }
-local servers = { 'pyright', 'clangd', 'hls', 'bashls', 'sumneko_lua'}
+local servers = { 'pyright', 'clangd', 'hls', 'bashls', 'sumneko_lua' }
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
         on_attach = on_attach,
@@ -53,18 +53,18 @@ end
 
 -- Set hover color for definitions and suggestions
 local hoverColour = vim.api.nvim_create_augroup("hoverColour", {clear = true})
+--vim.api.nvim_create_autocmd("ColorScheme", {
+--    command = "hi Pmenu ctermbg=62 guibg=#353157",
+--    group = hoverColour,
+--    desc = "Sets hover color for definitions and suggestions",
+--})
+--vim.api.nvim_create_autocmd("ColorScheme", {
+--    command = "hi NormalFloat guibg=#353157",
+--    group = hoverColour,
+--    desc = "Sets hover color for definitions and suggestions",
+--})
 vim.api.nvim_create_autocmd("ColorScheme", {
-    command = "hi Pmenu ctermbg=62 guibg=#353157",
-    group = hoverColour,
-    desc = "Sets hover color for definitions and suggestions",
-})
-vim.api.nvim_create_autocmd("ColorScheme", {
-    command = "hi NormalFloat guibg=#353157",
-    group = hoverColour,
-    desc = "Sets hover color for definitions and suggestions",
-})
-vim.api.nvim_create_autocmd("ColorScheme", {
-    command = "hi FloatBorder guifg=#cbe3e7 guibg=#353157",
+    command = "hi FloatBorder guifg=#cbe3e7",
     group = hoverColour,
     desc = "Sets hover color for definitions and suggestions",
 })

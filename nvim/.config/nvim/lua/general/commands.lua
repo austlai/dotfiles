@@ -49,9 +49,21 @@ function ftBash()
     end
 end
 
+function ftPy()
+    if vim.fn.expand('%:e') == ''
+    then
+        vim.opt.filetype = "python"
+    end
+end
+
+--vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+--    command = [[lua ftBash()]],
+--    desc = "Set bash ft for files with no extension",
+--})
+
 vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
-    command = [[lua ftBash()]],
-    desc = "Set bash ft for files with no extension",
+    command = [[lua ftPy()]],
+    desc = "Set py ft for files with no extension",
 })
 
 vim.api.nvim_create_autocmd("BufWritePost", {

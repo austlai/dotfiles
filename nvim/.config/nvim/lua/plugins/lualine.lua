@@ -1,4 +1,5 @@
 -- lualine --
+
 local diagnostics = {
   "diagnostics",
   colored = false,

@@ -6,6 +6,9 @@ vim.call('plug#begin', '~/.vim/plugged')
 
     -- Themes & Colours
     Plug 'sainnhe/sonokai'
+    Plug 'jsit/toast.vim'
+    Plug 'cpea2506/one_monokai.nvim'
+    Plug 'glepnir/zephyr-nvim'
     Plug 'nvim-lualine/lualine.nvim'
     Plug 'akinsho/bufferline.nvim'
     Plug 'p00f/nvim-ts-rainbow'
@@ -38,7 +41,8 @@ vim.call('plug#begin', '~/.vim/plugged')
     Plug 'hrsh7th/cmp-nvim-lsp'
     Plug 'onsails/lspkind-nvim'
     Plug 'ray-x/lsp_signature.nvim'
-    Plug 'williamboman/nvim-lsp-installer'
+    Plug 'williamboman/mason.nvim'
+    Plug 'williamboman/mason-lspconfig.nvim'
     Plug 'L3MON4D3/LuaSnip'
 
 vim.call('plug#end')
