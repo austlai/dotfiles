@@ -10,7 +10,7 @@ local menubar = require('menubar')
 local naughty = require("naughty")
 local wibox = require("wibox")
 
-local icondir = awful.util.getdir("config") .. "assets/icons/notifications/"
+local icondir =  "/home/austin/.config/awesome/assets/icons/notifications/"
 
 -- TODO: Figure out how to use hover effects without messing up the actions
 naughty.config.defaults.ontop = true
