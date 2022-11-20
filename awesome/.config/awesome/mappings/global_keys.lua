@@ -14,21 +14,22 @@ return gears.table.join(
         hotkeys_popup.show_help,
         { description = "Key mappings", group = "Awesome" }
     ),
-    --[[ TODO: FIX THIS I WANT IT
     awful.key(
         { modkey, "Shift" },
         "b",
         function ()
-            for s in screen do
-                s.mywibox.visible = not s.mywibox.visible
-                if s.mybottomwibox then
-                    s.mybottomwibox.visible = not s.mybottomwibox.visible
+            local s = awful.screen.focused()
+            if s.tl and s.tc and s.tr then
+                s.tl.visible = not s.tl.visible
+                if #s.selected_tag:clients() > 0 and s.tc.visible then
+                    s.tc.visible = not s.tc.visible
                 end
+                s.tc_on = not s.tr.visible
+                s.tr.visible = not s.tr.visible
             end
         end,
         {description = "Toggle top wibox.", group = "Awesome"}
     ),
-    --]]
     -- Tag browsing
     awful.key(
         { modkey },
@@ -134,7 +135,7 @@ return gears.table.join(
 		{},
 		"Print",
 		function()
-				awful.util.spawn( "maim ~/Pictures/screenshots/$(date +%s).png" )
+				awful.spawn.with_shell( "sleep 0.2 && maim ~/Pictures/screenshots/$(date +%s).png", false)
 		end,
 		{ description = "Screenshot", group = "Applications" }
 	),
@@ -142,7 +143,7 @@ return gears.table.join(
 		{ "Shift" },
 		"Print",
 		function ()
-				awful.util.spawn( "maim -s | xclip -selection clipboard -t image/png" )
+				awful.spawn.with_shell( "maim -s | xclip -selection clipboard -t image/png", false)
 		end,
 		{ description = "Screenshot (Select)", group = "Applications" }
 		),
@@ -150,10 +151,8 @@ return gears.table.join(
 		{},
 		"XF86AudioLowerVolume",
 		function(c)
-				awful.spawn.easy_async_with_shell("pactl set-sink-volume @DEFAULT_SINK@ -2%", function()
-						awesome.emit_signal("module::volume_osd:show", true)
+				awful.spawn.easy_async_with_shell("pactl set-sink-volume @DEFAULT_SINK@ -5%", function()
 						awesome.emit_signal("module::slider:update")
-						awesome.emit_signal("widget::volume_osd:rerun")
 				end)
 		end,
 		{ description = "Lower volume", group = "System" }
@@ -162,10 +161,8 @@ return gears.table.join(
 		{},
 		"XF86AudioRaiseVolume",
 		function(c)
-			awful.spawn.easy_async_with_shell("pactl set-sink-volume @DEFAULT_SINK@ +2%", function()
-				awesome.emit_signal("module::volume_osd:show", true)
+			awful.spawn.easy_async_with_shell("pactl set-sink-volume @DEFAULT_SINK@ +5%", function()
 				awesome.emit_signal("module::slider:update")
-				awesome.emit_signal("widget::volume_osd:rerun")
 			end)
 		end,
 		{ description = "Increase volume", group = "System" }
@@ -175,9 +172,7 @@ return gears.table.join(
 		"XF86AudioMute",
 		function(c)
 			awful.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle")
-			awesome.emit_signal("module::volume_osd:show", true)
 			awesome.emit_signal("module::slider:update")
-			awesome.emit_signal("widget::volume_osd:rerun")
 		end,
 		{ description = "Mute volume", group = "System" }
 	),
@@ -185,18 +180,7 @@ return gears.table.join(
 		{},
 		"XF86MonBrightnessUp",
 		function(c)
-			--awful.spawn("xbacklight -time 100 -inc 10%+")
-			awful.spawn.easy_async_with_shell(
-				"pkexec xfpm-power-backlight-helper --get-brightness",
-				function(stdout)
-					awful.spawn.easy_async_with_shell("pkexec xfpm-power-backlight-helper --set-brightness " .. tostring(tonumber(stdout) + BACKLIGHT_SEPS), function(stdou2)
-
-					end)
-					awesome.emit_signal("module::brightness_osd:show", true)
-					awesome.emit_signal("module::brightness_slider:update")
-					awesome.emit_signal("widget::brightness_osd:rerun")
-				end
-			)
+			awful.spawn.with_shell("xbacklight +5")
 		end,
 		{ description = "Raise backlight brightness", group = "System" }
 	),
@@ -204,88 +188,9 @@ return gears.table.join(
 		{},
 		"XF86MonBrightnessDown",
 		function(c)
-			awful.spawn.easy_async_with_shell(
-				"pkexec xfpm-power-backlight-helper --get-brightness",
-				function(stdout)
-					awful.spawn.easy_async_with_shell("pkexec xfpm-power-backlight-helper --set-brightness " .. tostring(tonumber(stdout) - BACKLIGHT_SEPS), function(stdout2)
-
-					end)
-					awesome.emit_signal("module::brightness_osd:show", true)
-					awesome.emit_signal("module::brightness_slider:update")
-					awesome.emit_signal("widget::brightness_osd:rerun")
-				end
-			)
+			awful.spawn.with_shell("xbacklight -5")
 		end,
 		{ description = "Lower backlight brightness", group = "System" }
-	),
-	awful.key(
-		{ modkey },
-		"#22",
-		function()
-			awful.spawn.easy_async_with_shell(
-				[[xprop | grep WM_CLASS | awk '{gsub(/"/, "", $4); print $4}']],
-				function(stdout)
-					if stdout then
-						ruled.client.append_rule {
-							rule = { class = stdout:gsub("\n", "") },
-							properties = {
-								floating = true
-							},
-						}
-						awful.spawn.easy_async_with_shell(
-							"cat ~/.config/awesome/assets/rules.txt",
-							function(stdout2)
-								for class in stdout2:gmatch("%a+") do
-									if class:match(stdout:gsub("\n", "")) then
-										return
-									end
-								end
-								awful.spawn.with_shell("echo -n '" .. stdout:gsub("\n", "") .. ";' >> ~/.config/awesome/assets/rules.txt")
-								local c = mouse.screen.selected_tag:clients()
-								for j, client in ipairs(c) do
-									if client.class:match(stdout:gsub("\n", "")) then
-										client.floating = true
-									end
-								end
-							end
-						)
-					end
-				end
-			)
-		end
-	),
-	awful.key(
-		{ modkey, "Shift" },
-		"#22",
-		function()
-			awful.spawn.easy_async_with_shell(
-				[[xprop | grep WM_CLASS | awk '{gsub(/"/, "", $4); print $4}']],
-				function(stdout)
-					if stdout then
-						ruled.client.append_rule {
-							rule = { class = stdout:gsub("\n", "") },
-							properties = {
-								floating = false
-							},
-						}
-						awful.spawn.easy_async_with_shell(
-							[[REMOVE="]] .. stdout:gsub("\n", "") ..
-                            [[;"STR=$(cat ~/.config/awesome/assets/rules.txt)
-								echo -n ${STR//$REMOVE/} > ~/.config/awesome/assets/rules.txt
-							]],
-							function(stdout2)
-								local c = mouse.screen.selected_tag:clients()
-								for j, client in ipairs(c) do
-									if client.class:match(stdout:gsub("\n", "")) then
-										client.floating = false
-									end
-								end
-							end
-						)
-					end
-				end
-			)
-		end
 	),
     awful.key(
 		{ modkey },

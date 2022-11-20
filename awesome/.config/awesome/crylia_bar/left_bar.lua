@@ -17,7 +17,7 @@ return function(s, widgets)
     bg = color["Grey900"],
     visible = true,
     maximum_width = dpi(650),
-    placement = function(c) awful.placement.top_left(c, { margins = dpi(10) }) end,
+    placement = function(c) awful.placement.top_left(c, { margins = dpi(5) }) end,
     shape = function(cr, width, height)
       gears.shape.rounded_rect(cr, width, height, 5)
     end
@@ -74,4 +74,5 @@ return function(s, widgets)
     nil,
     layout = wibox.layout.fixed.horizontal
   }
+  s.tl = top_left
 end

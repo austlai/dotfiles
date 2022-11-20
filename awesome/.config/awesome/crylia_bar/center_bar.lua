@@ -17,7 +17,7 @@ return function(s, widgets)
     bg = color["Grey900"],
     visible = true,
     maximum_width = dpi(500),
-    placement = function(c) awful.placement.top(c, { margins = dpi(10) }) end,
+    placement = function(c) awful.placement.top(c, { margins = dpi(5) }) end,
     shape = function(cr, width, height)
       gears.shape.rounded_rect(cr, width, height, 5)
     end
@@ -74,13 +74,14 @@ return function(s, widgets)
     nil,
     layout = wibox.layout.fixed.horizontal
   }
+  s.tc_on = true
 
   client.connect_signal(
     "manage",
     function(c)
     if #s.selected_tag:clients() < 1 then
       top_center.visible = false
-    else
+    elseif s.tc_on then
       top_center.visible = true
     end
   end
@@ -91,7 +92,7 @@ return function(s, widgets)
     function(c)
     if #s.selected_tag:clients() < 1 then
       top_center.visible = false
-    else
+    elseif s.tc_on then
       top_center.visible = true
     end
   end
@@ -102,7 +103,7 @@ return function(s, widgets)
     function(c)
     if #s.selected_tag:clients() < 1 then
       top_center.visible = false
-    else
+    elseif s.tc_on then
       top_center.visible = true
     end
   end
@@ -113,10 +114,11 @@ return function(s, widgets)
     function(c)
     if #s.selected_tag:clients() < 1 then
       top_center.visible = false
-    else
+    elseif s.tc_on then
       top_center.visible = true
     end
   end
   )
 
+  s.tc = top_center
 end

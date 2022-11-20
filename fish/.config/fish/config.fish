@@ -1,11 +1,13 @@
 if status is-interactive
 and not set -q TMUX
+and [ -n "$DISPLAY" ]
     exec tmux
 end
 
 set -Ux MANPAGER 'less -R --use-color -Dd+r -Du+b'
 set -Ux LS_COLORS 'di=01;36'
 set -Ux TERMINAL 'alacritty'
+set -gx EDITOR 'nvim'
 ###########
 # Aliases #
 ###########

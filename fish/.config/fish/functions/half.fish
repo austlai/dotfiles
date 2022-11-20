@@ -1,3 +1,3 @@
 function half
-    sudo tlp setcharge 60 75 BAT0
+    sudo tlp setcharge 50 75 BAT0
 end

@@ -17,8 +17,8 @@ window:
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
   padding:
-    x: 1
-    y: 1
+    x: 3
+    y: 3
 
   # Spread additional padding evenly around the terminal content.
   dynamic_padding: false
@@ -30,7 +30,8 @@ font:
 
 colors:
   primary:
-    background: '#2c2e34'
+    #background: '#2c2e34'
+    background: '#262a33'
 
 live_config_reload: true
     #foreground: '#c5c8c6'

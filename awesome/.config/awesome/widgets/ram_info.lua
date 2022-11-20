@@ -64,7 +64,7 @@ return function()
 
       local MemTotal, MemFree, MemAvailable = stdout:match("(%d+)\n(%d+)\n(%d+)\n")
 
-      ram_widget.container.ram_layout.label.text = tostring(string.format("%.1f", ((MemTotal - MemAvailable) / 1024 / 1024)) .. "/" .. string.format("%.1f", (MemTotal / 1024 / 1024)) .. "GB"):gsub(",", ".")
+      ram_widget.container.ram_layout.label.text = tostring(math.floor(((MemTotal - MemAvailable) / 1024 / 1024) / (MemTotal / 1024 / 1024) * 100)) .. "%"
     end
   )
 
