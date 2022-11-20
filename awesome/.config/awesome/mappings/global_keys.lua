@@ -16,8 +16,8 @@ return gears.table.join(
     ),
     --[[ TODO: FIX THIS I WANT IT
     awful.key(
-        { modkey, "Shift" }, 
-        "b", 
+        { modkey, "Shift" },
+        "b",
         function ()
             for s in screen do
                 s.mywibox.visible = not s.mywibox.visible
@@ -38,7 +38,7 @@ return gears.table.join(
     ),
 	awful.key(
 		{ modkey },
-		"Enter",
+		"Return",
 		function()
 			awful.spawn(user_vars.terminal)
 		end,
@@ -139,10 +139,10 @@ return gears.table.join(
 		{ description = "Screenshot", group = "Applications" }
 	),
 	awful.key(
-		{ "Shift" }, 
-		"Print", 
-		function () 
-				awful.util.spawn( "maim -s | xclip -selection clipboard -t image/png" ) 
+		{ "Shift" },
+		"Print",
+		function ()
+				awful.util.spawn( "maim -s | xclip -selection clipboard -t image/png" )
 		end,
 		{ description = "Screenshot (Select)", group = "Applications" }
 		),
@@ -269,7 +269,7 @@ return gears.table.join(
 							},
 						}
 						awful.spawn.easy_async_with_shell(
-							[[REMOVE="]] .. stdout:gsub("\n", "") .. 
+							[[REMOVE="]] .. stdout:gsub("\n", "") ..
                             [[;"STR=$(cat ~/.config/awesome/assets/rules.txt)
 								echo -n ${STR//$REMOVE/} > ~/.config/awesome/assets/rules.txt
 							]],
