@@ -9,4 +9,4 @@ g.sonokai_disable_italic_comment = 1
 g.monokai_term_italic = 1
 g.monokai_gui_italic = 1
 
-vim.cmd([[colorscheme zephyr]])
+vim.cmd([[colorscheme onedarkpro]])

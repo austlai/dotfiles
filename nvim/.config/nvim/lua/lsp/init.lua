@@ -33,16 +33,15 @@ local on_attach = function(client, bufnr)
     buf_set_keymap('n', '<C-k>', "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
     buf_set_keymap('n', '<Leader>a', "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
 
-    vim.lsp.handlers["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {border = border})
-    vim.lsp.handlers["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {border = border})
+    vim.lsp.handlers["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {border = "single"})
+    vim.lsp.handlers["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {border = "single"})
 end
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- Language Servers
 local lsp_flags = { debounce_text_changes = 150 }
-local servers = { 'pyright', 'clangd', 'hls', 'bashls', 'sumneko_lua' }
+local servers = { 'pyright', 'clangd', 'hls', 'bashls', 'sumneko_lua', 'html', 'cssls', 'tsserver', 'eslint' }
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
         on_attach = on_attach,

@@ -12,7 +12,7 @@ require('bufferline').setup {
         right_mouse_command = "vertical belowright sbuffer %d",
         left_mouse_command = "buffer %d",
         middle_mouse_command = "bdelete! %d",
-        indicator_icon = '▎',
+        indicator = { style = "icon", icon="▎" },
         buffer_close_icon = '',
         modified_icon = '●',
         close_icon = '',

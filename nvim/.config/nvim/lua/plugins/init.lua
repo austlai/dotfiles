@@ -1,62 +1,69 @@
 -- Plugins --
 
-local Plug = vim.fn['plug#']
+return require('packer').startup(function(use)
 
-vim.call('plug#begin', '~/.vim/plugged')
+    use 'wbthomason/packer.nvim'
 
     -- Themes & Colours
-    Plug 'sainnhe/sonokai'
-    Plug 'jsit/toast.vim'
-    Plug 'cpea2506/one_monokai.nvim'
-    Plug 'glepnir/zephyr-nvim'
-    Plug 'nvim-lualine/lualine.nvim'
-    Plug 'akinsho/bufferline.nvim'
-    Plug 'p00f/nvim-ts-rainbow'
-    Plug 'lukas-reineke/indent-blankline.nvim'
-    Plug 'kyazdani42/nvim-web-devicons'
-    Plug('nvim-treesitter/nvim-treesitter', { ['do'] = vim.fn[':TSUpdate'] })
-    Plug('rrethy/vim-hexokinase', { ['do'] = vim.fn['make hexokinase'] })
-    Plug 'mboughaba/i3config.vim'
-    Plug 'dag/vim-fish'
+    use 'sainnhe/sonokai'
+    use 'JoosepAlviste/palenightfall.nvim'
+    use 'olimorris/onedarkpro.nvim'
+    use 'nvim-lualine/lualine.nvim'
+    use 'folke/tokyonight.nvim'
+    use 'akinsho/bufferline.nvim'
+    use 'p00f/nvim-ts-rainbow'
+    use 'lukas-reineke/indent-blankline.nvim'
+    use 'kyazdani42/nvim-web-devicons'
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        run = function()
+            local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+            ts_update()
+        end,
+    }
+    use {
+        'rrethy/vim-hexokinase',
+        run = 'make hexokinase'
+    }
 
-    -- File Searching
-    Plug 'junegunn/fzf.vim'
-    Plug('junegunn/fzf', { ['do'] = vim.fn['fzf#install']})
-    Plug 'kyazdani42/nvim-tree.lua'
+    ---- File Searching
+    use {
+        'nvim-telescope/telescope-fzf-native.nvim',
+        run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
+    use {
+        'nvim-telescope/telescope.nvim', tag = '0.1.0',
+        requires = { {'nvim-lua/plenary.nvim'} }
+    }
+    use 'kyazdani42/nvim-tree.lua'
 
-    -- QOL
-    Plug 'jiangmiao/auto-pairs'
-    Plug 'psliwka/vim-smoothie'
-    Plug 'christoomey/vim-tmux-navigator'
-    Plug 'Vimjas/vim-python-pep8-indent'
+    ---- QOL
+    use 'jiangmiao/auto-pairs'
+    use 'psliwka/vim-smoothie'
+    use 'christoomey/vim-tmux-navigator'
+    use 'folke/todo-comments.nvim'
+    use {
+        "iamcco/markdown-preview.nvim",
+        run = function() vim.fn["mkdp#util#install"]() end,
+    }
+    use 'neoclide/vim-jsx-improve'
+    use 'wakatime/vim-wakatime'
 
-    -- LSP
-    Plug 'neovim/nvim-lspconfig'
-    Plug 'mfussenegger/nvim-jdtls'
-    Plug 'mfussenegger/nvim-dap'
-    Plug 'rcarriga/nvim-dap-ui'
-    Plug 'hrsh7th/nvim-cmp'
-    Plug 'hrsh7th/cmp-buffer'
-    Plug 'hrsh7th/cmp-path'
-    Plug 'hrsh7th/cmp-nvim-lsp'
-    Plug 'onsails/lspkind-nvim'
-    Plug 'ray-x/lsp_signature.nvim'
-    Plug 'williamboman/mason.nvim'
-    Plug 'williamboman/mason-lspconfig.nvim'
-    Plug 'L3MON4D3/LuaSnip'
+    ---- LSP
+    use 'neovim/nvim-lspconfig'
+    use 'hrsh7th/cmp-cmdline'
+    use {
+        'hrsh7th/nvim-cmp',
+        requires = {
+          'hrsh7th/cmp-nvim-lsp',
+          'hrsh7th/cmp-buffer',
+          'hrsh7th/cmp-path',
+        },
+    }
+    use 'onsails/lspkind-nvim'
+    use 'ray-x/lsp_signature.nvim'
+    use 'williamboman/mason.nvim'
+    use 'williamboman/mason-lspconfig.nvim'
+    use 'L3MON4D3/LuaSnip'
 
-vim.call('plug#end')
+end)
 
-require('plugins.cmp')
-require('plugins.fzf')
-require('plugins.hexokinase')
-require('plugins.indent_blankline')
-require('plugins.lualine')
-require('plugins.bufferline')
-require('plugins.lsp_signature')
-require('plugins.nerdtree')
-require('plugins.nvimtree')
-require('plugins.smoothie')
-require('plugins.treesitter')
-require('plugins.dap')
-require('plugins.dapui')
