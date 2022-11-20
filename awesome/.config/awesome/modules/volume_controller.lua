@@ -781,7 +781,7 @@ return function(s)
     awful.spawn.easy_async_with_shell(
       "./.config/awesome/scripts/mic.sh volume",
       function(stdout)
-        local volume = stdout:gsub("%%", ""):gsub("\n", "")
+        local volume = tonumber(stdout:gsub("%%", ""):gsub("\n", ""))
         volume_controller:get_children_by_id("mic_volume_margin")[1].mic_volume.slider_margin.slider:set_value(tonumber(volume))
         if volume > 0 then
           volume_controller:get_children_by_id("mic_volume_margin")[1].icon:set_image(gears.color.recolor_image(icondir
@@ -869,7 +869,6 @@ return function(s)
   awesome.connect_signal(
     "get::volume",
     function(volume)
-      volume = tonumber(volume)
       local icon = icondir .. "volume"
       if volume < 1 then
         icon = icon .. "-mute"

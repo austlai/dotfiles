@@ -29,7 +29,7 @@ return gears.table.join(
         { description = "Toggle floating window", group = "Client" }
     ),
     awful.key(
-        { modkey, "Control" },
+        { modkey, "Shift" },
         "Return",
         function (c)
             c:swap(awful.client.getmaster())

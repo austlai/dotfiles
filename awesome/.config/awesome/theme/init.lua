@@ -1,11 +1,3 @@
---------------------------------------------------
---  ██████╗██████╗ ██╗   ██╗██╗     ██╗ █████╗  --
--- ██╔════╝██╔══██╗╚██╗ ██╔╝██║     ██║██╔══██╗ --
--- ██║     ██████╔╝ ╚████╔╝ ██║     ██║███████║ --
--- ██║     ██╔══██╗  ╚██╔╝  ██║     ██║██╔══██║ --
--- ╚██████╗██║  ██║   ██║   ███████╗██║██║  ██║ --
---  ╚═════╝╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝╚═╝  ╚═╝ --
---------------------------------------------------
 local awful = require("awful")
 local beautiful = require("beautiful")
 local gears = require("gears")
@@ -19,7 +11,7 @@ Theme.awesome_icon = Theme_path .. "../assets/icons/ArchLogo.png"
 Theme.awesome_subicon = Theme_path .. "../assets/icons/ArchLogo.png"
 
 -- Wallpaper
-beautiful.wallpaper = user_vars.wallpaper
+beautiful.wallpaper = "/home/austin/Pictures/wallpapers/" .. tostring(math.random(5)) .. ".jpg"
 screen.connect_signal(
   'request::wallpaper',
   function(s)

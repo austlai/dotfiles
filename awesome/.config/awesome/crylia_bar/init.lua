@@ -18,10 +18,6 @@ awful.screen.connect_for_each_screen(
     )
 
     require("modules.powermenu")(s)
-    -- TODO: rewrite calendar osd, maybe write an own inplementation
-    -- require("modules.calendar_osd")(s)
-    require("modules.volume_osd")(s)
-    require("modules.brightness_osd")(s)
     require("modules.titlebar")
     require("modules.volume_controller")(s)
 
@@ -30,7 +26,7 @@ awful.screen.connect_for_each_screen(
     s.audio = require("widgets.audio")(s)
     s.date = require("widgets.date")()
     s.clock = require("widgets.clock")()
-    s.bluetooth = require("widgets.bluetooth")()
+    --s.bluetooth = require("widgets.bluetooth")()
     s.layoutlist = require("widgets.layout_list")()
     s.powerbutton = require("widgets.power")()
     s.taglist = require("widgets.taglist")(s)
@@ -38,13 +34,12 @@ awful.screen.connect_for_each_screen(
     s.systray = require("widgets.systray")(s)
     s.cpu_usage = require("widgets.cpu_info")("usage")
     s.gpu_usage = require("widgets.gpu_info")("usage")
-    s.network = require("widgets.network")()
+    --s.network = require("widgets.network")()
     s.ram_info = require("widgets.ram_info")()
 
-    require("crylia_bar.left_bar")(s, { s.layoutlist, s.systray, s.taglist })
-    require("crylia_bar.center_bar")(s, { s.tasklist })
-    require("crylia_bar.right_bar")(s, { s.ram_info, s.cpu_usage, s.audio, s.network, s.bluetooth, s.date, s.clock, s.powerbutton })
-    require("crylia_bar.dock")(s, user_vars.dock_programs)
+    s.l_bar = require("crylia_bar.left_bar")(s, { s.layoutlist, s.systray, s.taglist })
+    s.c_bar = require("crylia_bar.center_bar")(s, { s.tasklist })
+    s.r_bar = require("crylia_bar.right_bar")(s, { s.ram_info, s.cpu_usage, s.audio, s.battery, s.date, s.clock, s.powerbutton })
 
 end
 )

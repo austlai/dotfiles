@@ -58,39 +58,6 @@ return function()
     widget = wibox.container.background
   }
 
-  local battery_tooltip = awful.tooltip {
-    objects = { battery_widget },
-    text = "",
-    mode = "inside",
-    preferred_alignments = "middle",
-    margins = dpi(10)
-  }
-
-  local get_battery_info = function()
-    awful.spawn.easy_async_with_shell(
-      [[ upower -i $(upower -e | grep BAT) | grep "time to " ]],
-      function(stdout)
-        if stdout == nil or stdout == '' then
-          battery_tooltip:set_text('No Battery Found')
-          return
-        end
-        local rem_time = ""
-        if stdout:match("hour") then
-          rem_time = "Hours"
-        else
-          rem_time = "Minutes"
-        end
-        local bat_time = stdout:match("%d+,%d") or stdout:match("%d+.%d") or ""
-        if stdout:match("empty") then
-          battery_tooltip:set_text("Remaining battery time: " .. bat_time .. " " .. rem_time)
-        elseif stdout:match("time to full") then
-          battery_tooltip:set_text("Battery fully charged in: " .. bat_time .. " " .. rem_time)
-        end
-      end
-    )
-  end
-  get_battery_info()
-
   local last_battery_check = os.time()
   local notify_critical_battery = true
 
@@ -106,7 +73,7 @@ return function()
 
   local update_battery = function(status)
     awful.spawn.easy_async_with_shell(
-      [[sh -c "upower -i $(upower -e | grep BAT) | grep percentage | awk '{print \$2}' |tr -d '\n%'"]],
+      "acpi | cut -d'%' -f1 | rev | cut -d' ' -f1 | rev",
       function(stdout)
         local battery_percentage = tonumber(stdout)
 
@@ -120,7 +87,7 @@ return function()
 
         local icon = 'battery'
 
-        if status == 'fully-charged' or status == 'charging' and battery_percentage == 100 then
+        if status == 'full' or status == 'charging' or status == 'not' and battery_percentage > 98 then
           icon = icon .. '-' .. 'charging'
           battery_widget.container.battery_layout.icon_margin.icon_layout.icon:set_image(gears.surface.load_uncached(
             gears.color.recolor_image(icondir .. icon .. '.svg', "#212121")))
@@ -163,42 +130,20 @@ return function()
 
         battery_widget.container.battery_layout.icon_margin.icon_layout.icon:set_image(gears.surface.load_uncached(
           gears.color.recolor_image(icondir .. icon .. '.svg', "#212121")))
-
       end
     )
   end
 
   Hover_signal(battery_widget, color["Purple200"], color["Grey900"])
 
-  battery_widget:connect_signal(
-    'button::press',
-    function()
-      awful.spawn("xfce4-power-manager-settings")
-    end
-  )
+    watch(
+        [[bash -c "acpi | cut -d' ' -f3 | sed -E 's/%?,//'"]],
+        5,
+        function(widget, stdout)
+            local status = stdout:gsub("\n","")
+            update_battery(status:lower())
+        end
+    )
 
-  battery_widget:connect_signal(
-    "mouse::enter",
-    function()
-      get_battery_info()
-    end
-  )
-
-  watch(
-    [[sh -c "upower -i $(upower -e | grep BAT) | grep state | awk '{print \$2}' | tr -d '\n'"]],
-    5,
-    function(widget, stdout)
-      local status = stdout:gsub('%\n', '')
-      if status == nil or status == '' then
-        battery_widget.container.battery_layout.spacing = dpi(0)
-        battery_widget.container.battery_layout.label.visible = false
-        battery_tooltip:set_text('No battery found')
-        battery_widget.container.battery_layout.icon_margin.icon_layout.icon:set_image(gears.surface.load_uncached(
-          gears.color.recolor_image(icondir .. 'battery-off' .. '.svg', "#212121")))
-      end
-      update_battery(status)
-    end
-  )
-
-  return battery_widget
+    return battery_widget
 end

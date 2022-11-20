@@ -132,11 +132,6 @@ return function(s)
     awesome.quit()
   end
 
-  local lock_command = function()
-    awful.spawn("dm-tool lock")
-    awesome.emit_signal("module::powermenu:hide")
-  end
-
   local shutdown_command = function()
     awful.spawn("shutdown now")
     awesome.emit_signal("module::powermenu:hide")
@@ -151,15 +146,13 @@ return function(s)
   local shutdown_button = button("Shutdown", icondir .. "shutdown.svg", color["Blue200"], shutdown_command)
   local reboot_button = button("Reboot", icondir .. "reboot.svg", color["Red200"], reboot_command)
   local suspend_button = button("Suspend", icondir .. "suspend.svg", color["Yellow200"], suspend_command)
-  local logout_button = button("Logout", icondir .. "logout.svg", color["Green200"], logout_command)
-  local lock_button = button("Lock", icondir .. "lock.svg", color["Orange200"], lock_command)
+  local logout_button = button("Exit", icondir .. "logout.svg", color["Green200"], logout_command)
 
   -- Signals to change color on hover
   Hover_signal(shutdown_button.background, color["Blue200"], color["Grey900"])
   Hover_signal(reboot_button.background, color["Red200"], color["Grey900"])
   Hover_signal(suspend_button.background, color["Yellow200"], color["Grey900"])
   Hover_signal(logout_button.background, color["Green200"], color["Grey900"])
-  Hover_signal(lock_button.background, color["Orange200"], color["Grey900"])
 
   -- The powermenu widget
   local powermenu = wibox.widget {
@@ -205,9 +198,8 @@ return function(s)
           {
             shutdown_button,
             reboot_button,
-            logout_button,
-            lock_button,
             suspend_button,
+            logout_button,
             spacing = dpi(30),
             layout = wibox.layout.fixed.horizontal
           },

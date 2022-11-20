@@ -1,44 +1,44 @@
--------------------------------------------
--- Uservariables are stored in this file --
--------------------------------------------
 local awful = require("awful")
 local dpi = require("beautiful").xresources.apply_dpi
 local home = os.getenv("HOME")
 
--- If you want different default programs, wallpaper path or modkey; edit this file.
 user_vars = {
 
   -- Autotiling layouts
   layouts = {
     awful.layout.suit.tile,
-    awful.layout.suit.tile.left,
-    awful.layout.suit.tile.bottom,
-    awful.layout.suit.tile.top,
+    --awful.layout.suit.tile.left,
+    --awful.layout.suit.tile.bottom,
+    --awful.layout.suit.tile.top,
     awful.layout.suit.floating,
-    awful.layout.suit.fair,
-    awful.layout.suit.fair.horizontal,
-    awful.layout.suit.corner.nw,
-    awful.layout.suit.corner.ne,
-    awful.layout.suit.corner.sw,
-    awful.layout.suit.corner.se,
-    awful.layout.suit.magnifier,
+    --awful.layout.suit.fair,
+    --awful.layout.suit.fair.horizontal,
+    --awful.layout.suit.corner.nw,
+    --awful.layout.suit.corner.ne,
+    --awful.layout.suit.corner.sw,
+    --awful.layout.suit.corner.se,
+    --awful.layout.suit.magnifier,
     awful.layout.suit.max,
-    awful.layout.suit.max.fullscreen,
-    awful.layout.suit.spiral.dwindle,
+    --awful.layout.suit.max.fullscreen,
+    --awful.layout.suit.spiral.dwindle,
   },
 
   -- Icon theme from /usr/share/icons
   icon_theme = "Papirus-Dark",
 
   -- Write the terminal command to start anything here
-  autostart = {
-    "picom --experimental-backends"
-  },
+    autostart = {
+        "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1",
+        "dex -a -s /etc/xdg/autostart/:~/.config/autostart/",
+        "~/.config/wpg/wp_init.sh",
+        "redshift -l 33.89:151.21",
+        "picom --experimental-backends",
+    },
 
   -- Type 'ip a' and check your wlan and ethernet name
   network = {
-    wlan = "wlo1",
-    ethernet = "eno1"
+    wlan = "wlan0",
+    ethernet = "EMPTY"
   },
 
   -- Set your font with this format:
@@ -55,14 +55,11 @@ user_vars = {
   -- This is the modkey 'mod4' = Super/Mod/WindowsKey, 'mod3' = alt...
   modkey = "Mod4",
 
-  -- place your wallpaper at this path with this name, you could also try to change the path
-  wallpaper = home .. "/.config/awesome/assets/fuji.jpg",
-
   -- Naming scheme for the powermenu, userhost = "user@hostname", fullname = "Firstname Surname", something else ...
   namestyle = "userhost",
 
   -- List every Keyboard layout you use here comma seperated. (run localectl list-keymaps to list all averiable keymaps)
-  kblayout = { "de", "ru" },
+  kblayout = { "au" },
 
   -- Your filemanager that opens with super+e
   file_manager = "thunar",
@@ -71,7 +68,7 @@ user_vars = {
   screenshot_program = "flameshot gui",
 
   -- If you use the dock here is how you control its size
-  dock_icon_size = dpi(50),
+  dock_icon_size = dpi(40),
 
   -- Add your programs exactly like in this example.
   -- First entry has to be how you would start the program in the terminal (just try it if you dont know yahoo it)
@@ -85,15 +82,6 @@ user_vars = {
     { "firefox", "firefox", "Firefox" },
     { "discord", "discord", "Discord" },
     { "Spotify", "flatpak run com.spotify.Client", "Spotify" },
-    { "Code", "code", "Visual Studio Code" },
-    { "processing-app-Base", "arduino", "Arduino IDE" },
-    { "Zoom", "flatpak run us.zoom.Zoom", "Zoom" },
-    { "Thunderbird", "thunderbird", "Thunderbird" },
-    { "Mattermost", "mattermost-desktop", "Mattermost" },
-    { "Blender", "blender", "Blender" },
-    { "Steam", "steam", "Steam" },
-    { "FreeCAD", "freecad", "FreeCAD" },
-    { "Thunar", "thunar", "Dateien" },
-    { "Windows", "virsh start Windows_11", "Windows 11", "/home/crylia/Bilder/windows.png", false, 50 }
+    { "Thunar", "thunar", "Thunar" },
   }
 }
