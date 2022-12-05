@@ -18,6 +18,8 @@ require('plugins.treesitter')
 require('plugins.todo-comments')
 require('plugins.markdown')
 
+require('plugins.rainbowTEMPFIX')
+
 require('general.colours')
 
 require('lsp')

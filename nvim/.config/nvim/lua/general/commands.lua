@@ -61,10 +61,10 @@ end
 --    desc = "Set bash ft for files with no extension",
 --})
 
-vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
-    command = [[lua ftPy()]],
-    desc = "Set py ft for files with no extension",
-})
+--vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+--    command = [[lua ftPy()]],
+--    desc = "Set py ft for files with no extension",
+--})
 
 vim.api.nvim_create_autocmd("BufWritePost", {
     pattern = "*.md",

@@ -37,9 +37,11 @@ return require('packer').startup(function(use)
     use 'kyazdani42/nvim-tree.lua'
 
     ---- QOL
-    use 'jiangmiao/auto-pairs'
+    use {
+      "windwp/nvim-autopairs",
+      config = function() require("nvim-autopairs").setup {} end
+    }
     use 'psliwka/vim-smoothie'
-    use 'christoomey/vim-tmux-navigator'
     use 'folke/todo-comments.nvim'
     use {
         "iamcco/markdown-preview.nvim",
