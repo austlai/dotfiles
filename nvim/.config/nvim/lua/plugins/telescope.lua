@@ -1,7 +1,5 @@
 -- telescope --
 
-vim.env.FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -l -g ""'
-
 require('telescope').setup {
   extensions = {
     fzf = {
