@@ -3,8 +3,8 @@ window {
     anchor: north;
     location: north;
     width: 100%;
-    background-color: #744636;
-    color: #fdded3;
+    background-color: #282828;
+    color: #fffff0;
     padding: 4px;
     children: [ horibox ];
 }
@@ -12,30 +12,30 @@ window {
 horibox {
     orientation: horizontal;
     children:   [ prompt, entry, listview ];
-    background-color:      #744636;
+    background-color:      #282828;
 }
 
 listview {
     layout:     horizontal;
-    spacing:    5px;
+    spacing:    10px;
     lines:      100;
-    background-color:      #744636;
+    background-color:      #282828;
 
 }
 
 entry {
     expand:     false;
-    width:      8em;
-    background-color:      #744636;
-    color: #fdded3;
+    width:      5em;
+    background-color:      #282828;
+    color: #fffff0;
 
 
 }
 
 element {
-    padding: 0px 2px;
-    background-color: #744636;
-    color: #fdded3;
+    padding: 0px 8px;
+    background-color: #282828;
+    color: #fffff0;
 }
 
 element-text {
@@ -49,10 +49,10 @@ element-icon {
 }
 
 element selected {
-    background-color: #415a68;
+    background-color: #363636;
 }
 
 prompt {
-    background-color: #744636;
-    color : #fdded3;
+    background-color: #282828;
+    color : #fffff0;
 }

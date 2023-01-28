@@ -1,0 +1,91 @@
+# quit bspwm
+super + shift + esc
+  bspc quit
+
+# shutdown_menu
+super + shift + e
+  ~/.config/i3/scripts/shutdown_menu -p rofi -c
+
+# reload sxhkd
+super + shift + r
+	pkill -USR1 -x sxhkd; \
+	bspc wm -r;            \
+  notify-send 'Reloaded Config'
+
+# close and kill
+super + q
+	bspc node -c
+
+# toggle polybar
+super + shift + b
+	{polybar-msg cmd toggle; bspc config top_padding +0 ,\
+         polybar-msg cmd toggle; bspc config top_padding 29 }
+
+# send the newest marked node to the newest preselected node
+super + y
+	bspc node newest.marked.local -n newest.!automatic.local
+
+# swap the current node and the biggest window
+super + g
+	bspc node -s biggest.window
+
+# set the window state
+super + {shift + space,f}
+	bspc node focused -t {\~floating,\~fullscreen}
+
+# set the node flags
+super + shift + s
+	bspc node -g sticky
+
+# focus the node in the given direction
+super + {_,shift + }{h,j,k,l}
+	bspc node -{f,s} {west,south,north,east}
+
+# focus or send to the given desktop
+super + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}'
+
+# resize windows
+super + alt + {h,j,k,l}
+ {bspc node @parent/second -z left -20 0;   \
+  bspc node @parent/first -z right -20 0,   \
+  bspc node @parent/second -z top 0 +20;    \
+  bspc node @parent/first -z bottom 0 +20,  \
+  bspc node @parent/first -z bottom 0 -20;  \
+  bspc node @parent/second -z top 0 -20,    \
+  bspc node @parent/first -z right +20 0;   \
+  bspc node @parent/second -z left +20 0}
+
+# Rotate tree
+super + r
+    bspc node @/ -C forward
+
+# rofi
+super + d
+  rofi -show drun -theme ~/.config/rofi/rofi.rasi
+
+# specific apps
+super + {Return, n, m}
+  {alacritty,firefox,thunar}
+
+# screenshot full screen
+Print
+  sleep 0.2 && maim ~/Pictures/screenshots/$(date +%s).png
+
+# screenshot selection
+\shift + Print
+  maim -s | xclip -selection clipboard -t image/png
+
+# volume change
+XF86Audio{LowerVolume,RaiseVolume}
+  pulseaudio-ctl {down,up}
+  #pactl set-sink-volume @DEFAULT_SINK@ {-,+}5%
+
+# volume mute
+XF86AudioMute
+  pulseaudio-ctl mute
+  #pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+# brightness change
+XF86MonBrightness{Up,Down}
+  xbacklight {+,-}5
