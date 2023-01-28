@@ -6,10 +6,8 @@ return require('packer').startup(function(use)
 
     -- Themes & Colours
     use 'sainnhe/sonokai'
-    use 'JoosepAlviste/palenightfall.nvim'
     use 'olimorris/onedarkpro.nvim'
     use 'nvim-lualine/lualine.nvim'
-    use 'folke/tokyonight.nvim'
     use 'akinsho/bufferline.nvim'
     use 'p00f/nvim-ts-rainbow'
     use 'lukas-reineke/indent-blankline.nvim'
@@ -47,8 +45,8 @@ return require('packer').startup(function(use)
         "iamcco/markdown-preview.nvim",
         run = function() vim.fn["mkdp#util#install"]() end,
     }
-    use 'neoclide/vim-jsx-improve'
     use 'wakatime/vim-wakatime'
+    use 'christoomey/vim-tmux-navigator'
 
     ---- LSP
     use 'neovim/nvim-lspconfig'
