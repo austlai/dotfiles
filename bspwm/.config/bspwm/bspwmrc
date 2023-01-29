@@ -1,25 +1,20 @@
 #! /bin/sh
 
-pgrep -x sxhkd > /dev/null || sxhkd &
-/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 picom --experimental-backends &
-xset -dpms s off &
 pgrep -x redshift > /dev/null || redshift -l 33.89:151.21 &
 dunst &
-pgrep -f i3-battery-popup > /dev/null || i3-battery-popup -n &
-~/.config/polybar/launch.sh &
 nm-applet &
 feh --randomize --bg-fill ~/Pictures/wallpapers/* &
 xsetroot -cursor_name left_ptr &
+xinput --set-prop 'pointer:Logitech G Pro' 'libinput Accel Profile Enabled' 0, 1
 
-workspaces() {
-	name=1
-	for monitor in `bspc query -M`; do
-		bspc monitor ${monitor} -n "$name" -d '1' '2' '3' '4' '5' '6'
-		let name++
-	done
-}
-workspaces
+xrandr --output DP-2 --primary --mode 1920x1080 --rate 144 --output HDMI-3 --mode 1920x1080 --left-of DP-2
+~/.config/polybar/launch.sh &
+pkill sxhkd
+sxhkd &
+
+bspc monitor DP-2 -d 1 2 3 4 5 6 7 8 9 10
+bspc monitor HDMI-3 -d 1 2 3 4 5 6 7 8 9 10
 
 bspc config border_width                  2
 bspc config window_gap                    4
@@ -49,3 +44,4 @@ bspc config merge_overlapping_monitors    true
 #bspc rule -a Screenkey manage=off
 bspc rule -a zoom state=floating
 bspc rule -a Zoom state=floating
+

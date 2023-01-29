@@ -20,20 +20,18 @@ listview {
     spacing:    10px;
     lines:      100;
     background-color:      #282828;
-
 }
 
 entry {
+    padding: 4px 10px;
     expand:     false;
     width:      5em;
     background-color:      #282828;
     color: #fffff0;
-
-
 }
 
 element {
-    padding: 0px 8px;
+    padding: 4px 10px;
     background-color: #282828;
     color: #fffff0;
 }
@@ -55,4 +53,5 @@ element selected {
 prompt {
     background-color: #282828;
     color : #fffff0;
+    padding: 4px 0px;
 }

@@ -9,7 +9,7 @@ env:
   # available, otherwise `xterm-256color` is used.
   #TERM: alacritty
   TERM: xterm-256color
-  WINIT_X11_SCALE_FACTOR: "1.75"
+  WINIT_X11_SCALE_FACTOR: "1.5"
 
 window:
   # Window padding (changes require restart)
@@ -26,6 +26,9 @@ window:
   opacity: 1.0
 
 font:
+  normal:
+    family: Iosevka Nerd Font
+    style: Regular
   size: 8
 
 colors:
@@ -33,7 +36,6 @@ colors:
     #background: '#2c2e34'
     background: '#262a33'
 
-live_config_reload: true
     #foreground: '#c5c8c6'
 
     # Bright and dim foreground colors
@@ -274,7 +276,7 @@ live_config_reload: true
 #   - (Linux/BSD) user login shell
 #   - (Windows) powershell
 shell:
-  program: /bin/fish
+  program: /bin/zsh
   args:
      - --login
 

@@ -1,10 +1,10 @@
 # quit bspwm
-super + shift + esc
+super + shift + Escape
   bspc quit
 
 # shutdown_menu
 super + shift + e
-  ~/.config/i3/scripts/shutdown_menu -p rofi -c
+  rofi -show power-menu -modi power-menu:~/bin/power -theme ~/.config/rofi/themes/default.rasi
 
 # reload sxhkd
 super + shift + r
@@ -25,10 +25,6 @@ super + shift + b
 super + y
 	bspc node newest.marked.local -n newest.!automatic.local
 
-# swap the current node and the biggest window
-super + g
-	bspc node -s biggest.window
-
 # set the window state
 super + {shift + space,f}
 	bspc node focused -t {\~floating,\~fullscreen}
@@ -38,12 +34,20 @@ super + shift + s
 	bspc node -g sticky
 
 # focus the node in the given direction
-super + {_,shift + }{h,j,k,l}
-	bspc node -{f,s} {west,south,north,east}
+#super + {_,shift + }{h,j,k,l}
+#	bspc node -{f,s} {west,south,north,east}
+
+super + shift + {h,j,k,l}
+	dir={west,south,north,east}; \
+	bspc node -s "$dir.local" --follow \
+	|| bspc node -m "$dir" --follow
+
+alt + {h,l}
+	bspc monitor -f {west,east}
 
 # focus or send to the given desktop
 super + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}'
+	bspc {desktop -f,node -d} focused:'^{1-9,10}'
 
 # resize windows
 super + alt + {h,j,k,l}
@@ -62,7 +66,7 @@ super + r
 
 # rofi
 super + d
-  rofi -show drun -theme ~/.config/rofi/rofi.rasi
+  rofi -show drun -theme ~/.config/rofi/themes/default.rasi -show-icons -display-drun ">"
 
 # specific apps
 super + {Return, n, m}
@@ -73,7 +77,7 @@ Print
   sleep 0.2 && maim ~/Pictures/screenshots/$(date +%s).png
 
 # screenshot selection
-\shift + Print
+shift + Print
   maim -s | xclip -selection clipboard -t image/png
 
 # volume change
