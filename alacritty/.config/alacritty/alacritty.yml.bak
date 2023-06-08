@@ -7,8 +7,8 @@ env:
   # each instance of Alacritty. If it is not present, alacritty will
   # check the local terminfo database and use `alacritty` if it is
   # available, otherwise `xterm-256color` is used.
-  TERM: alacritty
-  #TERM: xterm-256color
+  #TERM: alacritty
+  TERM: xterm-256color
   WINIT_X11_SCALE_FACTOR: "1.75"
 
 window:
@@ -17,46 +17,21 @@ window:
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
   padding:
-    x: 0
-    y: 0
+    x: 3
+    y: 3
 
   # Spread additional padding evenly around the terminal content.
   dynamic_padding: false
 
-  opacity: 0.8
+  opacity: 1.0
 
 font:
   size: 8
 
-#colors:
-  #primary:
-    #background: '#2c2e34'
 colors:
   primary:
-    background: '{color0}'
-    foreground: '{color15}'
-  cursor:
-    text:       '{color0}'
-    cursor:     '{color7}'
-  normal:
-    black:      '{color0}'
-    red:        '{color1}'
-    green:      '{color2}'
-    yellow:     '{color3}'
-    blue:       '{color4}'
-    magenta:    '{color5}'
-    cyan:       '{color6}'
-    white:      '{color7}'
-  bright:
-    black:      '{color8}'
-    red:        '{color9}'
-    green:      '{color10}'
-    yellow:     '{color11}'
-    blue:       '{color12}'
-    magenta:    '{color13}'
-    cyan:       '{color14}'
-    white:      '{color15}'
-  transparent_background_colors: true
+    #background: '#2c2e34'
+    background: '#262a33'
 
 live_config_reload: true
     #foreground: '#c5c8c6'
@@ -299,7 +274,7 @@ live_config_reload: true
 #   - (Linux/BSD) user login shell
 #   - (Windows) powershell
 shell:
-  program: /bin/fish
+  program: /bin/zsh
   args:
      - --login
 
