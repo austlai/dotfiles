@@ -31,9 +31,9 @@
     # screen width minus the width defined in within the geometry option.
     #geometry = "250x5-14+10"
     width = 250
-    height = 250
+    height = 400
     origin = top-right
-    offset = 4x34
+    offset = 8x46
 
     # Show how many messages are currently hidden (because of geometry).
     indicate_hidden = yes
@@ -90,7 +90,7 @@
 
     ### Text ###
 
-    font = JetBrainsMono NL 11
+    font = JetBrainsMono NL 12
 
     # The spacing between lines.  If the height is smaller than the
     # font height, it will get raised to the font height.

@@ -7,6 +7,7 @@ return require('packer').startup(function(use)
     -- Themes & Colours
     use 'sainnhe/sonokai'
     use 'olimorris/onedarkpro.nvim'
+    use 'rakr/vim-one'
     use 'nvim-lualine/lualine.nvim'
     use 'akinsho/bufferline.nvim'
     use 'p00f/nvim-ts-rainbow'

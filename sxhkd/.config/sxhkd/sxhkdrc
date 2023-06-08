@@ -19,11 +19,17 @@ super + q
 # toggle polybar
 super + shift + b
 	{polybar-msg cmd toggle; bspc config top_padding +0 ,\
-         polybar-msg cmd toggle; bspc config top_padding 29 }
+         polybar-msg cmd toggle; bspc config top_padding 38 }
 
 # send the newest marked node to the newest preselected node
 super + y
 	bspc node newest.marked.local -n newest.!automatic.local
+
+# balance 50:50 nodes
+super + b
+  bspc node -f @parent; \
+  bspc node --ration 0.5; \
+  bspc node -f last;
 
 # set the window state
 super + {shift + space,f}
@@ -34,8 +40,8 @@ super + shift + s
 	bspc node -g sticky
 
 # focus the node in the given direction
-#super + {_,shift + }{h,j,k,l}
-#	bspc node -{f,s} {west,south,north,east}
+super + {h,j,k,l}
+	bspc node -f {west,south,north,east}
 
 super + shift + {h,j,k,l}
 	dir={west,south,north,east}; \
@@ -69,16 +75,16 @@ super + d
   rofi -show drun -theme ~/.config/rofi/themes/default.rasi -show-icons -display-drun ">"
 
 # specific apps
-super + {Return, n, m}
-  {alacritty,firefox,thunar}
+super + {Return, n, m, o}
+  {alacritty,firefox,thunar,obsidian}
 
 # screenshot full screen
 Print
-  sleep 0.2 && maim ~/Pictures/screenshots/$(date +%s).png
+  sleep 0.2 && maim ~/Pictures/screenshots/$(date +%s).png; notify-send -i ~/Pictures/screenshots/$(ls -t ~/Pictures/screenshots | head -n 1) "Maim" "Screenshot Taken"
 
 # screenshot selection
 shift + Print
-  maim -s | xclip -selection clipboard -t image/png
+  maim -s -o | xclip -selection clipboard -t image/png;
 
 # volume change
 XF86Audio{LowerVolume,RaiseVolume}
@@ -90,6 +96,18 @@ XF86AudioMute
   pulseaudio-ctl mute
   #pactl set-sink-mute @DEFAULT_SINK@ toggle
 
+# Media Play/Pause
+XF86AudioPlay
+  playerctl -i firefox play-pause
+
+# Media Next/Prev
+XF86Audio{Next,Prev}
+  playerctl -i firefox {next,previous}
+
 # brightness change
 XF86MonBrightness{Up,Down}
   xbacklight {+,-}5
+
+# obsidian vault in neovim
+super + shift + o
+    alacritty -e $SHELL -c 'cd /home/austin/Documents/vacuum_cleaner && nvim'

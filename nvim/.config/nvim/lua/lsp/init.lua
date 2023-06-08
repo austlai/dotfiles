@@ -41,7 +41,7 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- Language Servers
 local lsp_flags = { debounce_text_changes = 150 }
-local servers = { 'pyright', 'clangd', 'bashls', 'html', 'cssls', 'tsserver' }
+local servers = { 'pyright', 'clangd', 'bashls' }
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
         on_attach = on_attach,

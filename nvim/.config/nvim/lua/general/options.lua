@@ -3,9 +3,9 @@
 local opt = vim.opt
 local fn = vim.fn
 
-opt.tabstop = 2
-opt.softtabstop = 2
-opt.shiftwidth = 2
+opt.tabstop = 4
+opt.softtabstop = 4
+opt.shiftwidth = 4
 opt.expandtab = true
 opt.smartindent = true
 opt.cursorline = true
@@ -21,3 +21,6 @@ if fn.has('nvim') or fn.has('termguicolors')
 then
     opt.termguicolors = true
 end
+
+-- TODO: REMOVE
+vim.g.filetype_pl="prolog"

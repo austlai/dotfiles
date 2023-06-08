@@ -2,7 +2,6 @@
 
 local set = vim.keymap.set
 
---set('n', '<Space>', '<Leader>', { desc = 'Set space as leader' })
 set('i', 'jk', '<esc>', { desc = 'Set jk as escape' })
 set('i', '<C-l>', '<c-g>u<Esc>[s1z=`]a<c-g>u', { desc = 'Fix spelling mistakes in line' })
 set('n', '<C-h>', '<C-w>h', { desc = 'Move to different window' })
