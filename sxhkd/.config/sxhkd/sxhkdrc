@@ -8,9 +8,9 @@ super + shift + e
 
 # reload sxhkd
 super + shift + r
-	pkill -USR1 -x sxhkd; \
-	bspc wm -r;            \
-  notify-send 'Reloaded Config'
+	bspc wm -r; \
+  notify-send 'Reloaded Config'; \
+  pkill sxhkd && sxhkd
 
 # close and kill
 super + q
@@ -19,7 +19,7 @@ super + q
 # toggle polybar
 super + shift + b
 	{polybar-msg cmd toggle; bspc config top_padding +0 ,\
-         polybar-msg cmd toggle; bspc config top_padding 38 }
+         polybar-msg cmd toggle; bspc config top_padding 35 }
 
 # send the newest marked node to the newest preselected node
 super + y
@@ -88,12 +88,13 @@ shift + Print
 
 # volume change
 XF86Audio{LowerVolume,RaiseVolume}
-  pulseaudio-ctl {down,up}
+  pamixer -{d,i} 5
   #pactl set-sink-volume @DEFAULT_SINK@ {-,+}5%
 
 # volume mute
 XF86AudioMute
-  pulseaudio-ctl mute
+  pamixer --toggle-mute
+  #pulseaudio-ctl mute
   #pactl set-sink-mute @DEFAULT_SINK@ toggle
 
 # Media Play/Pause
