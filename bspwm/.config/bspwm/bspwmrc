@@ -1,8 +1,8 @@
 #! /bin/sh
 
-picom --experimental-backends &
+picom &
 pgrep -x redshift > /dev/null || redshift -l 33.89:151.21 &
-/usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
+#/usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
 dunst &
 nm-applet &
 #feh --randomize --bg-fill ~/Pictures/wallpapers/* &
@@ -16,7 +16,8 @@ setxkbmap -option caps:escape
 bspc monitor eDP -d 1 2 3 4 5 6 7 8 9 10
 
 bspc config border_width                  2
-bspc config window_gap                    8
+#bspc config window_gap                    8
+bspc config window_gap                    0
 
 bspc config split_ratio                   0.50
 bspc config borderless_monocle            true
@@ -43,4 +44,3 @@ bspc config merge_overlapping_monitors    true
 #bspc rule -a Screenkey manage=off
 bspc rule -a zoom state=floating
 bspc rule -a Zoom state=floating
-bpsc rule -a tomato state=floating sticky=on

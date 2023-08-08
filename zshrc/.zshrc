@@ -1,4 +1,4 @@
-export PATH=$HOME/bin:/usr/local/bin:$HOME/applications:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$HOME/applications:$PATH:/usr/local/go/bin
 
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
@@ -34,7 +34,7 @@ zstyle ':vcs_info:git:*' formats ' (%b)'
 
 setopt PROMPT_SUBST
 
-PROMPT='%F{#9bd690}[%f%F{#c790d6}austin%f%F{#9bd690}@%f%F{#81a2be}ironhide%f %F{#f0c674}%~%f%F{white}${vcs_info_msg_0_}%f%F{#9bd690}]$ %f'
+PROMPT='%F{#9bd690}[%f%F{#c790d6}austin%f%F{#9bd690}@%f%F{#81a2be}soundwave%f %F{#f0c674}%~%f%F{white}${vcs_info_msg_0_}%f%F{#9bd690}]$ %f'
 
 export TERMINAL=alacritty
 export EDITOR=nvim
@@ -51,33 +51,14 @@ alias bm="bashmount"
 alias tmux="/usr/bin/tmux attach"
 alias tmuxn="/usr/bin/tmux new"
 
-alias mouse="xinput set-prop 'pointer:Logitech G Pro' 'libinput Accel Profile Enabled' 0, 1 && \
-  xinput set-prop 'pointer:Logitech G Pro' 'libinput Accel Speed' -0.42"
-alias balance="bspc node -f @parent && bspc node --ratio 0.5 && bspc node -f last"
-
 alias vault="cd ~/Documents/vacuum_cleaner/01_uni"
-alias keymap="cd ~/qmk_firmware/keyboards/sofle/keymaps/austlai/"
 
-alias mchost="ssh austin@170.64.174.61"
+alias half="sudo tlp setcharge 50 75 BAT0"
+alias full="sudo tlp fullcharge BAT0"
 
-alias tomato="alacritty msg config window.opacity=0.6; /usr/local/bin/tomato"
-alias himym="sudo mount -m /dev/sdb2 /run/media/austin/Hitachi; devour vlc ~/linuxHIMYM.xspf"
-
+alias pi="ssh austin@astrotrain.local"
 alias unsw="ssh z5358560@login0.cse.unsw.edu.au"
-alias cgend="cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=1 && mv build/compile_commands.json ."
-alias cgenr="cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=1 && mv build/compile_commands.json ."
-alias cbuild="cmake --build ."
 
-updates() {
-    news=''
-    yay -Sy
-    if [ $(eval 'yay -Pw | wc -l') -eq 0 ]
-    then
-        news="No News"
-    else
-        news="Recent News"
-    fi
-    echo "$(eval 'yay -Qu | wc -l') updates available ($news)"
-}
+alias update="sudo apt update && sudo apt upgrade && flatpak update"
 
-
+source /home/austin/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
