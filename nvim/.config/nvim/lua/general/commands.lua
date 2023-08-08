@@ -42,32 +42,14 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     desc = "Remove trailing whitespace on write",
 })
 
-function ftBash()
-    if vim.fn.expand('%:e') == ''
-    then
-        vim.opt.filetype = "sh"
-    end
-end
-
-function ftPy()
-    if vim.fn.expand('%:e') == ''
-    then
-        vim.opt.filetype = "python"
-    end
-end
+--function ftBash()
+--    if vim.fn.expand('%:e') == ''
+--    then
+--        vim.opt.filetype = "sh"
+--    end
+--end
 
 --vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
 --    command = [[lua ftBash()]],
 --    desc = "Set bash ft for files with no extension",
 --})
-
---vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
---    command = [[lua ftPy()]],
---    desc = "Set py ft for files with no extension",
---})
-
-vim.api.nvim_create_autocmd("BufWritePost", {
-    pattern = "*.md",
-    command = 'silent! !/home/austin/bin/buildmd "%:p"',
-    desc = "Auto build markdown files on save",
-})
