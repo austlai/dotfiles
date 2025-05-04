@@ -1,4 +1,4 @@
-export PATH=$HOME/bin:/usr/local/bin:$HOME/applications:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$HOME/applications:$HOME/.local/bin:$HOME/.cargo/bin:$PATH
 
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
@@ -21,7 +21,6 @@ LS_COLORS="rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:c
 export LS_COLORS
 
 # Path
-export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$PATH
 
 # Beep
 unsetopt beep
@@ -52,21 +51,26 @@ alias tmux="/usr/bin/tmux attach"
 alias tmuxn="/usr/bin/tmux new"
 
 alias mouse="xinput set-prop 'pointer:Logitech G Pro' 'libinput Accel Profile Enabled' 0, 1 && \
-  xinput set-prop 'pointer:Logitech G Pro' 'libinput Accel Speed' -0.42"
+  xinput set-prop 'pointer:Logitech G Pro' 'libinput Accel Speed' -0.24"
+#alias mouse="xinput set-prop 'pointer:Logitech G Pro' 'libinput Accel Profile Enabled' 0, 1 && \
+#  xinput set-prop 'pointer:Logitech G Pro' 'libinput Accel Speed' -0.42"
 alias balance="bspc node -f @parent && bspc node --ratio 0.5 && bspc node -f last"
 
-alias vault="cd ~/Documents/vacuum_cleaner/01_uni"
+alias vault="cd ~/Documents/vacuum_cleaner/03_uni"
 alias keymap="cd ~/qmk_firmware/keyboards/sofle/keymaps/austlai/"
+alias zmk="cd ~/zmk-config/config"
+alias swap="cd ~/.local/state/nvim/swap"
 
 alias mchost="ssh austin@170.64.174.61"
+alias pi="ssh alai@192.168.86.32"
 
-alias tomato="alacritty msg config window.opacity=0.6; /usr/local/bin/tomato"
-alias himym="sudo mount -m /dev/sdb2 /run/media/austin/Hitachi; devour vlc ~/linuxHIMYM.xspf"
+alias himym="sudo mount -m /dev/sda2 /run/media/austin/Hitachi; vlc ~/linuxHIMYM.xspf"
 
 alias unsw="ssh z5358560@login0.cse.unsw.edu.au"
 alias cgend="cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=1 && mv build/compile_commands.json ."
 alias cgenr="cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=1 && mv build/compile_commands.json ."
 alias cbuild="cmake --build ."
+alias activate="source env/bin/activate"
 
 updates() {
     news=''
@@ -80,4 +84,25 @@ updates() {
     echo "$(eval 'yay -Qu | wc -l') updates available ($news)"
 }
 
+fcd() {
+    cd "$(fd "$1" | head -n 1)" > /dev/null 2>&1 || cd "$(fd "$1" | head -n 1 | sed "s/\(.*\)\/.*$/\1/")"
+}
 
+untar() {
+    tar -xvf "$1"
+}
+
+csend() {
+    rsync --progress -r "$2" "z5358560@login.cse.unsw.edu.au:~/comp$1"
+}
+
+monitor_rot() {
+    hyprctl monitor | grep "transform: 0"
+    if [ $? -ne 0 ]; then
+        hyprctl keyword monitor HDMI-A-1,preferred,auto,1,transform,1
+    else
+        hyprctl keyword monitor HDMI-A-1,preferred,auto,1,transform,0
+    fi
+}
+
+cleanrus="find . -name Cargo.toml -type f -execdir 6991 cargo clean \;"

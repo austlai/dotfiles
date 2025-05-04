@@ -5,9 +5,12 @@ pgrep -x redshift > /dev/null || redshift -l 33.89:151.21 &
 /usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
 dunst &
 nm-applet &
-#feh --randomize --bg-fill ~/Pictures/wallpapers/* &
+feh --randomize --bg-fill ~/Pictures/wallpapers/* &
+xrandr --output DisplayPort-1 --primary --mode 2560x1440 --rate 165 --output HDMI-A-0 --mode 1920x1080 --left-of DisplayPort-1
 xsetroot -cursor_name left_ptr &
-feh --bg-fill ~/Pictures/wallpapers/3.jpg
+xinput set-prop 'pointer:Logitech G Pro' 'libinput Accel Profile Enabled' 0, 1 &
+xinput set-prop 'pointer:Logitech G Pro' 'libinput Accel Speed' -0.24 &
+#feh --bg-fill ~/Pictures/wallpapers/3.jpg
 ~/.config/polybar/launch.sh &
 pkill sxhkd
 sxhkd &
