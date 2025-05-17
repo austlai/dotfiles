@@ -43,11 +43,25 @@ super + shift + s
 super + {h,j,k,l}
 	bspc node -f {west,south,north,east}
 
+# swap nodes
 super + shift + {h,j,k,l}
 	dir={west,south,north,east}; \
 	bspc node -s "$dir.local" --follow \
 	|| bspc node -m "$dir" --follow
 
+# preselect node
+super + ctrl + {h,j,k,l}
+  bspc node -p {west,south,north,east}
+
+# cancel preselection
+super + ctrl + space
+  bspc node -p cancel
+
+# move a node to the preselect
+super + shift + p
+  bspc node -n last.!automatic
+
+# move a node across monitors
 alt + {h,l}
 	bspc monitor -f {west,east}
 
@@ -56,15 +70,15 @@ super + {_,shift + }{1-9,0}
 	bspc {desktop -f,node -d} focused:'^{1-9,10}'
 
 # resize windows
-super + alt + {h,j,k,l}
- {bspc node @parent/second -z left -20 0;   \
-  bspc node @parent/first -z right -20 0,   \
-  bspc node @parent/second -z top 0 +20;    \
-  bspc node @parent/first -z bottom 0 +20,  \
-  bspc node @parent/first -z bottom 0 -20;  \
-  bspc node @parent/second -z top 0 -20,    \
-  bspc node @parent/first -z right +20 0;   \
-  bspc node @parent/second -z left +20 0}
+alt + shift + {h,j,k,l}
+ {bspc node @parent/second -z left -50 0;   \
+  bspc node @parent/first -z right -50 0,   \
+  bspc node @parent/second -z top 0 +50;    \
+  bspc node @parent/first -z bottom 0 +50,  \
+  bspc node @parent/first -z bottom 0 -50;  \
+  bspc node @parent/second -z top 0 -50,    \
+  bspc node @parent/first -z right +50 0;   \
+  bspc node @parent/second -z left +50 0}
 
 # Rotate tree
 super + r
@@ -75,8 +89,11 @@ super + d
   rofi -show drun -theme ~/.config/rofi/themes/default.rasi -show-icons -display-drun ">"
 
 # specific apps
-super + {Return, n, m, o}
-  {alacritty,firefox,thunar,obsidian}
+super + {Return, n, m}
+  {kitty,firefox,thunar}
+
+super + o
+    dbus-run-session flatpak run md.obsidian.Obsidian
 
 # screenshot full screen
 Print
@@ -112,3 +129,6 @@ XF86MonBrightness{Up,Down}
 # obsidian vault in neovim
 super + shift + o
     alacritty -e $SHELL -c 'cd /home/austin/Documents/vacuum_cleaner && nvim'
+
+super + shift + t
+    bspc node @/ -R 90

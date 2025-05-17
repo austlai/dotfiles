@@ -41,15 +41,3 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     command = [[lua trimWhitespace()]],
     desc = "Remove trailing whitespace on write",
 })
-
---function ftBash()
---    if vim.fn.expand('%:e') == ''
---    then
---        vim.opt.filetype = "sh"
---    end
---end
-
---vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
---    command = [[lua ftBash()]],
---    desc = "Set bash ft for files with no extension",
---})

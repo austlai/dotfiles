@@ -2,10 +2,12 @@
 
 return {
     -- Themes & Colours
-    'sainnhe/sonokai',
-    'olimorris/onedarkpro.nvim',
-    'rakr/vim-one',
-    'ribru17/bamboo.nvim',
+    {
+        'rebelot/kanagawa.nvim',
+        config = function()
+            require("kanagawa").load("wave")
+        end
+    },
     'HiPhish/nvim-ts-rainbow2',
     'kyazdani42/nvim-web-devicons',
     ---- File Searching

@@ -21,6 +21,3 @@ if fn.has('nvim') or fn.has('termguicolors')
 then
     opt.termguicolors = true
 end
-
--- TODO: REMOVE
-vim.g.filetype_pl="prolog"
